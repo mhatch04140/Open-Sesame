@@ -1,5 +1,5 @@
 # Requirements
 
-##Functional requirements
+## Functional requirements
 
-##Non-functional Requirements
+## Non-functional Requirements

@@ -3,7 +3,7 @@ Project Requirments
 Micheal Hatch @ Philip Vickers
 Copyright 2022
 
-## Introduction
+## Introduction - written by MH
 
 In today's world, vehicles come with a wide range of options. The options range from telling you how many miles your car will go on a current gas level to when it's time to change the oil. Furthermore, some cars have options that dim their lights from high beam to low beam when you approach another car.
 
@@ -16,7 +16,7 @@ Since the mid-2000s, cars have had apps that alert you of oil changes, remote st
 Furthermore, the vehicle would include safety features to prevent children from getting pinned when the doors are opened or closed. When a signal is received from the door robot arm, the program instructs the car's computer on which way to open or close the door. The vehicle can then be entered and exited safely by children. 
 From the car computer to the door operation, the car manufacturer is responsible for all mechanical and computer operations.
 
-## Functional Requirments
+## Functional Requirments - written by MH
 
 ### Use case #1 
 

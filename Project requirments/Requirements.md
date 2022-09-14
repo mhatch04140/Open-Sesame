@@ -64,6 +64,46 @@ Safty Conditions
 Parking Brake must be applied.
 Car must be parked.
 
+## Use case #3
+
+Car computer sends notification that car door can not open becasue door is being blocked.
+
+Goal
+
+When a door is opening and an object is blocking it, an alert appears on the App. 
+
+Other Resources Needed
+
+The car computer is notified that the robot cannot fully open.  The car computer sends the signal to the App because of obstruction.
+
+User Action
+
+Once you've received the notification, check to see what the obstruction is.  If necessary, remove the obstruction and repeat the initial command. 
+
+Product Action
+
+When the door is blocked, you receive a notification from the App.  As soon as the new command is received, the App completes the operation. 
+
+Use case #4
+
+Car Computer sends notification about door closing during operation and bound by an object.
+
+Goal
+
+If an object obstructs a door while it is closing, the App notifies you. 
+
+Other Resources Needed
+When the robot cannot fully close, the car computer is notified.  In response, the App receives a signal from the car's computer. 
+
+User Action
+
+Once you receive the notification, look for the obstruction.  Clear it and repeat the original command. 
+
+Product Action
+
+A notification is sent to you when an obstruction is detected at the door.  Once the App receives the new command, it will initiate the operation. 
+
+
 
 
 

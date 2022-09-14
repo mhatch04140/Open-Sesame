@@ -84,7 +84,7 @@ Product Action
 
 When the door is blocked, you receive a notification from the App.  As soon as the new command is received, the App completes the operation. 
 
-Use case #4
+## Use case #4
 
 Car Computer sends notification about door closing during operation and bound by an object.
 

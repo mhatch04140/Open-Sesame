@@ -15,3 +15,55 @@ Since the mid-2000s, cars have had apps that alert you of oil changes, remote st
 
 Furthermore, the vehicle would include safety features to prevent children from getting pinned when the doors are opened or closed. When a signal is received from the door robot arm, the program instructs the car's computer on which way to open or close the door. The vehicle can then be entered and exited safely by children. 
 From the car computer to the door operation, the car manufacturer is responsible for all mechanical and computer operations.
+
+## Functional Requirments
+
+### Use case #1 
+
+Goal
+
+A door opens when the voice recognition system receives a command from the handheld device.
+
+Other Resources Needed
+
+Car
+Handheld Phone
+
+User Action
+
+First the user opens the APP. Then the user touchs the Voice Activation Button. Then the user say's "Open right front door." 
+
+Product Action
+
+The signal travels by blue tooth to the car and the car computer opens the right front door if all safty conditions are meet.
+
+Safty Conditions
+
+Parking Brake must be applied.
+Car must be parked.
+
+### Use case #2
+
+Goal
+
+The door closes after the voice recognition receives a command from the operator through the handheld device. 
+
+Other Resources Needed
+
+Handheld device
+Car
+
+User Action
+First the user opens the APP. Then the user touchs the Voice Activation Button. Then the user say's "Close right front door." 
+Product Action
+
+The signal travels by blue tooth to the car and the car computer opens the right front door if all safty conditions are meet.
+
+Safty Conditions
+
+Parking Brake must be applied.
+Car must be parked.
+
+
+
+

@@ -113,7 +113,8 @@ Open Sesame will be a mobile application that operates only the Android OS. The 
 
 The hardware component of Open Sesame will be based on an Arduino developmentboard. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
 
-### Performance
+<details><summary>### Performance</summary>
+<p>
 
 #### Moblile App 
 
@@ -124,13 +125,18 @@ The hardware component of Open Sesame will be based on an Arduino developmentboa
 |**Command response time** | 1 sec |
 |**Bluetooth range:** | 50 ft |
 
-#### Door Actuation System Limits
-**Max number of open doors** 4
-**Time to open a door** 5 sec
-**Memory usage** 30Kb
-**Output voltage:** 5V
+#### Door Actuation System 
+
+| Category | Limit |
+|--------- |-------|
+|**Open doors** | 4 |
+|**Door opening time** |  5 sec |
+|**Memory usage** | 30kb |
 
 Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf?_gl=1*1tzapmj*_ga*MjEyODY5MjA4MS4xNjYzNDU4MDg0*_ga_NEXN8H46L5*MTY2MzQ1ODA4NC4xLjEuMTY2MzQ1OTkxMy4wLjAuMA)
+
+  </p>
+</details>
 
 ### Security
 

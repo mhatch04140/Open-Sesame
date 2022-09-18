@@ -1,6 +1,6 @@
 # Open Sesame
 Project Requirments
-Micheal Hatch @ Phillip Vickers
+Micheal Hatch & Phillip Vickers
 Copyright 2022
 
 ## Introduction - written by MH

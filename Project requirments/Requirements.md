@@ -115,11 +115,14 @@ The hardware component of Open Sesame will be based on an Arduino developmentboa
 
 ### Performance
 
-#### Moblile App Limits
-**Loading time:** 3 sec
-**App Size:** 30Mb
-**Command response time** 1 sec
-**Bluetooth range:** 50 ft
+#### Moblile App 
+
+| Category | Limit |
+|--------- |-------|
+|**Loading time:** | 3 sec |
+|**App Size:** |  30Mb |
+|**Command response time** | 1 sec |
+|**Bluetooth range:** | 50 ft |
 
 #### Door Actuation System Limits
 **Max number of open doors** 4

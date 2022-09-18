@@ -113,7 +113,7 @@ Open Sesame will be a mobile application that operates only the Android OS. The 
 
 The hardware component of Open Sesame will be based on an Arduino developmentboard. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
 
-###Platform
+### Performance
 
 #### Moblile App 
 

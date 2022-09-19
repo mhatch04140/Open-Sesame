@@ -16,6 +16,8 @@ Since the mid-2000s, cars have had apps that alert you of oil changes, remote st
 Furthermore, the vehicle would include safety features to prevent children from getting pinned when the doors are opened or closed. When a signal is received from the door robot arm, the program instructs the car's computer on which way to open or close the door. The vehicle can then be entered and exited safely by children. 
 From the car computer to the door operation, the car manufacturer is responsible for all mechanical and computer operations.
 
+In conclusion, this project will only intail a protype. We will not be alternating an existing car system. Our prototype will include an Adrunino processor, Blue tooth technology, servo motors to represent car doors opening and closing, handheld device(phone) and LED lights representing go or no go for door operation. 
+
 ## Functional Requirments - written by MH
 
 ### Use case #1 
@@ -26,7 +28,7 @@ A door opens when the voice recognition system receives a command from the handh
 
 Other Resources Needed
 
-Car
+car -> prototype
 Handheld Phone
 
 User Action
@@ -51,7 +53,7 @@ The door closes after the voice recognition receives a command from the operator
 Other Resources Needed
 
 Handheld device
-Car
+Car car -> prototype
 
 User Action
 First the user opens the APP. Then the user touchs the Voice Activation Button. Then the user say's "Close right front door." 

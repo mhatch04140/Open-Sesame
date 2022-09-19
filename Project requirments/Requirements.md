@@ -3,7 +3,9 @@ Project Requirments
 Micheal Hatch & Phillip Vickers
 Copyright 2022
 
-## Introduction - written by MH
+## Introduction 
+
+@author Mike Hatch
 
 In today's world, vehicles come with a wide range of options. The options range from telling you how many miles your car will go on a current gas level to when it's time to change the oil. Furthermore, some cars have options that dim their lights from high beam to low beam when you approach another car.
 
@@ -18,7 +20,9 @@ From the car computer to the door operation, the car manufacturer is responsible
 
 In conclusion, this project will only intail a protype. We will not be alternating an existing car system. Our prototype will include an Adrunino processor, Blue tooth technology, servo motors to represent car doors opening and closing, handheld device(phone) and LED lights representing go or no go for door operation. 
 
-## Functional Requirments - written by MH
+## Functional Requirments
+
+@author Mike Hatch
 
 ### Use case #1 
 

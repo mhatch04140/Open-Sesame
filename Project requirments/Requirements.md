@@ -1,6 +1,6 @@
 # Open Sesame
 Project Requirments
-Micheal Hatch @ Philip Vickers
+Micheal Hatch & Phillip Vickers
 Copyright 2022
 
 ## Introduction - written by MH
@@ -105,7 +105,64 @@ Product Action
 
 A notification is sent to you when an obstruction is detected at the door.  Once the App receives the new command, it will initiate the operation. 
 
+## Non-Functional Requirements
+
+@author Phillip Vickers
+
+### Platform
+
+Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatable with the latest version of the OS Android 12 Snowcone.
+
+The hardware component of Open Sesame will be based on an Arduino developmentboard. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
+
+### Performance
+
+#### Moblile App 
+
+| Category | Limit |
+|--------- |-------|
+|**Loading time:** | 3 sec |
+|**App Size:** |  30Mb |
+|**Command response time** | 1 sec |
+|**Bluetooth range:** | 50 ft |
+
+#### Door Actuation System 
+
+| Category | Limit |
+|--------- |-------|
+|**Open doors** | 4 |
+|**Door opening time** |  5 sec |
+|**Memory usage** | 30kb |
+
+Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf?_gl=1*1tzapmj*_ga*MjEyODY5MjA4MS4xNjYzNDU4MDg0*_ga_NEXN8H46L5*MTY2MzQ1ODA4NC4xLjEuMTY2MzQ1OTkxMy4wLjAuMA)
+
+
+### Security
+
+### User Characteristics
+
+### Documentation
+
+**Design Documentation.** This document shall be a detailed design that describes how the various components of the system work. It may include block diagrams, schematics, or code snippets, as appropriate. The audience of this document is other develoers who might want to understand and extend the system.
+
+**User Documentation.** This document shall describe how to install, configure, and use the system. The audience of this document is people who want to use the system without understanding the internal operation of the system
+
+**Website.** A website shall be produced that describes the system. The audience of this site is potential users considering the system and current users looking for technical support. This site can be hosted anywhere that is convenient
+
+### Data Formats
+
+Mobile app input methods will consist of both voice commands and button presses. The app will connect with the development board via bluetooth. Bluetooth 2.0 will be used.
+
+The development board will connect to 4 servos that opens individual doors. The 4 servos will use the PWM pins on the dev board.
+
+### Internationalization
+
+Open Seasame will only support english at this time.
+
+### Environment
 
 
 
+### Expected Enhancements
 
+### Date

@@ -80,7 +80,7 @@ When a door is opening and an object is blocking it, an alert appears on the App
 
 Other Resources Needed
 
-The car computer is notified that the robot cannot fully open.  The car computer sends the signal to the App because of obstruction.
+Car computer 
 
 User Action
 
@@ -99,7 +99,8 @@ Goal
 If an object obstructs a door while it is closing, the App notifies you. 
 
 Other Resources Needed
-When the robot cannot fully close, the car computer is notified.  In response, the App receives a signal from the car's computer. 
+
+Car Computer
 
 User Action
 
@@ -108,6 +109,48 @@ Once you receive the notification, look for the obstruction.  Clear it and repea
 Product Action
 
 A notification is sent to you when an obstruction is detected at the door.  Once the App receives the new command, it will initiate the operation. 
+
+## Use case #5
+
+When parking brake is apllied, the system will allow for door operation.
+
+Other Resources
+
+N/A
+
+Goal
+
+If the parking break is not applied the App will not open a car door. If the parking break is applied the App will complete the operation.
+
+User Action
+
+Before leaving a parked car, make sure the parking break has been applied. Then use the App as the App is attended for.
+
+Product Action
+
+This action is completed with a parking break being applied and the car sends the safty signal that the break is applied.
+
+## Use case #6
+
+Car is moving while App is being asked to complete a task.
+
+Goal
+
+If there is movement in the tire roatation, the App will Not allow any voice activations.
+
+Other Resources
+
+Tire Monitor - in the proto type this be be a LED light. The LED light will be green for no tire rotation and red for tire rotation.
+
+User Action
+
+If a voice caommand is given and the command is not completed the APP will dispay a "tire rolling error." The car must be stopped by the user
+and then use the voice command.
+
+Product action
+
+When the LED light is green, the APP voice commands will complete.  If the LED light is red the App will not operate.
+
 
 ## Non-Functional Requirements
 

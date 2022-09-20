@@ -171,3 +171,5 @@ Open Seasame will only support english at this time.
 No expected enhancements expected beyond delivery of initial prototype.
 
 ### Date
+
+The final presentation will be on or about the last day of classes of the Spring 2023 semester. The final demonstration and the documentation will be due at the end of finals week.

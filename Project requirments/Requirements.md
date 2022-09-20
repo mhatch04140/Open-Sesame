@@ -168,7 +168,7 @@ The hardware component of Open Sesame will be based on an Arduino developmentboa
 
 | Category | Limit |
 |--------- |-------|
-|**Loading time:** | 3 sec |
+|**App Loading time:** | 3 sec |
 |**App Size:** |  30Mb |
 |**Command response time** | 1 sec |
 |**Bluetooth range:** | 50 ft |
@@ -180,6 +180,7 @@ The hardware component of Open Sesame will be based on an Arduino developmentboa
 |**Open doors** | 4 |
 |**Door opening time** |  5 sec |
 |**Memory usage** | 30kb |
+|**Door will detect obstruction** | 500ms |
 
 Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf?_gl=1*1tzapmj*_ga*MjEyODY5MjA4MS4xNjYzNDU4MDg0*_ga_NEXN8H46L5*MTY2MzQ1ODA4NC4xLjEuMTY2MzQ1OTkxMy4wLjAuMA)
 
@@ -208,8 +209,10 @@ Open Seasame will only support english at this time.
 
 ### Environment
 
-
-
 ### Expected Enhancements
 
+No expected enhancements expected beyond delivery of initial prototype.
+
 ### Date
+
+The final presentation will be on or about the last day of classes of the Spring 2023 semester. The final demonstration and the documentation will be due at the end of finals week.

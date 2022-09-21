@@ -34,6 +34,7 @@ A door opens when a handheld device speaks a command to the voice recognition sy
 Other Resources Needed
 
 car -> prototype
+
 Handheld Phone
 
 User Action

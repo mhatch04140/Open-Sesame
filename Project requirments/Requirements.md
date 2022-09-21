@@ -58,7 +58,8 @@ After the handheld device receives a command from the operator, the door closes.
 Other Resources Needed
 
 Handheld device
-Car car -> prototype
+
+Car -> prototype
 
 User Action
 In order to use the app, the user must first open it. The user then presses a voice activation button. The user then says, "Close the right front door." 

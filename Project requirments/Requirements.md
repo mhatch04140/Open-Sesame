@@ -18,7 +18,8 @@ Since the mid-2000s, cars have had apps that alert you of oil changes, remote st
 Furthermore, the vehicle would include safety features to prevent children from getting pinned when the doors are opened or closed. When a signal is received from the door robot arm, the program instructs the car's computer on which way to open or close the door. The vehicle can then be entered and exited safely by children. 
 From the car computer to the door operation, the car manufacturer is responsible for all mechanical and computer operations.
 
-In conclusion, this project will only intail a protype. We will not be alternating an existing car system. Our prototype will include an Adrunino processor, Blue tooth technology, servo motors to represent car doors opening and closing, handheld device(phone) and LED lights representing go or no go for door operation. 
+Ultimately, this project will only involve a prototype. Currently, there is no plan to replace the existing car system. Our prototype will have an Arduino processor, Bluetooth technology, servo motors to represent the opening and closing of car doors, a handheld device (phone), and LED lights representing go or no go for door operation.
+ 
 
 ## Functional Requirments
 
@@ -28,7 +29,7 @@ In conclusion, this project will only intail a protype. We will not be alternati
 
 Goal
 
-A door opens when the voice recognition system receives a command from the handheld device.
+A door opens when a handheld device speaks a command to the voice recognition system.
 
 Other Resources Needed
 
@@ -37,11 +38,11 @@ Handheld Phone
 
 User Action
 
-First the user opens the APP. Then the user touchs the Voice Activation Button. Then the user say's "Open right front door." 
+In order to use the application, the user must first open it. After that, the user touches the Voice Activation Button. The user then says, "Open the right front door." 
 
 Product Action
 
-The signal travels by blue tooth to the car and the car computer opens the right front door if all safty conditions are meet.
+If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer opens the right front door.
 
 Safty Conditions
 
@@ -52,7 +53,7 @@ Car must be parked.
 
 Goal
 
-The door closes after the voice recognition receives a command from the operator through the handheld device. 
+After the handheld device receives a command from the operator, the door closes.
 
 Other Resources Needed
 
@@ -60,10 +61,11 @@ Handheld device
 Car car -> prototype
 
 User Action
-First the user opens the APP. Then the user touchs the Voice Activation Button. Then the user say's "Close right front door." 
+In order to use the app, the user must first open it. The user then presses a voice activation button. The user then says, "Close the right front door." 
+
 Product Action
 
-The signal travels by blue tooth to the car and the car computer opens the right front door if all safty conditions are meet.
+If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer opens the right front door.
 
 Safty Conditions
 
@@ -72,11 +74,11 @@ Car must be parked.
 
 ## Use case #3
 
-Car computer sends notification that car door can not open becasue door is being blocked.
+The car computer informs the driver that the door cannot be opened due to a blockage.
 
 Goal
 
-When a door is opening and an object is blocking it, an alert appears on the App. 
+Whenever a door is opening and an object is blocking it, an alert appears on the app. 
 
 Other Resources Needed
 
@@ -84,19 +86,20 @@ Car computer
 
 User Action
 
-Once you've received the notification, check to see what the obstruction is.  If necessary, remove the obstruction and repeat the initial command. 
+As soon as you receive the notification, determine what obstruction is present and remove it if necessary.
 
 Product Action
 
-When the door is blocked, you receive a notification from the App.  As soon as the new command is received, the App completes the operation. 
+Your App notifies you when the door is blocked. Upon removing the blocking item and ensuring all safety measures have been implemented.  Normal operations will be carried out by the app.
+
 
 ## Use case #4
 
-Car Computer sends notification about door closing during operation and bound by an object.
+The car computer informs the driver that the door cannot close due to a blockage.
 
 Goal
 
-If an object obstructs a door while it is closing, the App notifies you. 
+Whenever a door is being closed and an object is blocking it, an alert appears on the app. 
 
 Other Resources Needed
 
@@ -104,15 +107,15 @@ Car Computer
 
 User Action
 
-Once you receive the notification, look for the obstruction.  Clear it and repeat the original command. 
+As soon as you receive the notification, determine what obstruction is present and remove it if necessary.
 
 Product Action
 
-A notification is sent to you when an obstruction is detected at the door.  Once the App receives the new command, it will initiate the operation. 
+Your App notifies you when the door is blocked. Upon removing the blocking item and ensuring all safety measures have been implemented.  Normal operations will be carried out by the app.
 
 ## Use case #5
 
-When parking brake is apllied, the system will allow for door operation.
+The system will allow door operation when the parking brake is applied.
 
 Other Resources
 
@@ -120,36 +123,37 @@ N/A
 
 Goal
 
-If the parking break is not applied the App will not open a car door. If the parking break is applied the App will complete the operation.
+It will not be possible to operate the App if the parking brake is not applied. App will complete the operation if parking brake is applied.
 
 User Action
 
-Before leaving a parked car, make sure the parking break has been applied. Then use the App as the App is attended for.
+Make sure the parking brake has been applied before leaving a parked car. The App can then be used since the parking brake has been taken care of.
 
 Product Action
 
-This action is completed with a parking break being applied and the car sends the safty signal that the break is applied.
+When the parking brake is applied, the car sends the safety signal that the break has been applied.
 
 ## Use case #6
 
-Car is moving while App is being asked to complete a task.
+A task is being asked of the App while the car is moving.
 
 Goal
 
-If there is movement in the tire roatation, the App will Not allow any voice activations.
+It is not possible to activate the App using voice if there is movement in the tire rotation.
 
 Other Resources
 
-Tire Monitor - in the proto type this be be a LED light. The LED light will be green for no tire rotation and red for tire rotation.
+Initially, this will be a LED light that monitors tire rotation. For no tire rotation, the LED light will be green, while for tire rotation, it will be red.
 
 User Action
 
-If a voice caommand is given and the command is not completed the APP will dispay a "tire rolling error." The car must be stopped by the user
-and then use the voice command.
+In the event that a voice command is given, but not completed, the APP will display a "tire rolling error." The user must stop the car.
+Voice commands can then be used.
+
 
 Product action
 
-When the LED light is green, the APP voice commands will complete.  If the LED light is red the App will not operate.
+When the LED light on the APP turns green, the voice commands can be completed.  There will be no operation of the App if the LED light is red.
 
 
 ## Non-Functional Requirements

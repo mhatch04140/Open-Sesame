@@ -193,7 +193,21 @@ Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-da
 
 ### Security
 
+App security will consist of a user name and password to protect against unautorized access. Security between the app and bluetooth module will consist of a pin matching to aunthetificate that the app is connecting to the correct bluetooth device.
+
 ### User Characteristics
+
+The mobile application's user interface needs to be simple, user friendly, and easy to use. The purpose of the system is make it easier for a user to open a car door when they may be otherwise burdened with thier hands full.
+
+In order for the system to benefit a user, the system must be as simple as possible.
+
+1. The app must load quickly and after a brief splash screen the app needs to be ready to use.
+
+2. Once on the main screen one button press should set the app in a state to recieve voice commands.
+
+3. If a valid command is issued then no further user action should be required to open or close a door.
+
+4. If an error or safety stoppage occurs then the app should clearly communicate the nature of the failure to the user.
 
 ### Documentation
 
@@ -214,6 +228,12 @@ The development board will connect to 4 servos that opens individual doors. The 
 Open Seasame will only support english at this time.
 
 ### Environment
+
+The mobile application will exist in a user’s Android device and will be subject to the environmental conditions that the user subjects their mobile phone to.
+
+For the purpose of this prototype, the door opening system will not be subjected to any austere environmental conditions. In this case water, dirt, grease, road salt, etc. does not need to be a factor.
+
+If the system was to move beyond a prototype or proof of concept then adverse environmental factors would need to be considered. In a production environment the door opening system would need to be weatherproof or located in an area of the vehicle that would mitigate these concerns. For example, if the system was to move to production, then the system would need to be robust enough to function in temperatures ranging from -40 degrees Fahrenheit to 120 degrees Fahrenheit. The system would need to be waterproof, resistant to interference from dirt, grease, and salt. It would also need to withstand severe vibration and be reliable enough to be used indefinably with possibly thousands of door openings.
 
 ### Expected Enhancements
 

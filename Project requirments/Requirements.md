@@ -1,5 +1,5 @@
 # Open Sesame
-Project Requirments
+Project Requirements
 Micheal Hatch & Phillip Vickers
 Copyright 2022
 
@@ -21,7 +21,7 @@ From the car computer to the door operation, the car manufacturer is responsible
 Ultimately, this project will only involve a prototype. Currently, there is no plan to replace the existing car system. Our prototype will have an Arduino processor, Bluetooth technology, servo motors to represent the opening and closing of car doors, a Android OS (phone), and LED lights representing go or no go for door operation.
  
 
-## Functional Requirments
+## Functional Requirements
 
 @author Mike Hatch
 
@@ -45,7 +45,7 @@ Product Action
 
 If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer opens the right front door.
 
-Safty Conditions
+Safety Conditions
 
 Parking Brake must be applied.
 Car must be parked.
@@ -69,7 +69,7 @@ Product Action
 
 If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer opens the right front door.
 
-Safty Conditions
+Safety Conditions
 
 Parking Brake must be applied.
 Car must be parked.
@@ -164,13 +164,13 @@ When the LED light on the APP turns green, the voice commands can be completed. 
 
 ### Platform
 
-Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatable with the latest version of the OS Android 12 Snowcone.
+Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatible  with the latest version of the OS Android 12 Snowcone.
 
-The hardware component of Open Sesame will be based on an Arduino developmentboard. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
+The hardware component of Open Sesame will be based on an Arduino development board. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
 
 ### Performance
 
-#### Moblile App 
+#### Mobile App 
 
 | Category | Limit |
 |--------- |-------|
@@ -193,17 +193,17 @@ Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-da
 
 ### Security
 
-App security will consist of a user name and password to protect against unautorized access. Security between the app and bluetooth module will consist of  pin matching to ensure that the app is connecting to the correct bluetooth device.
+App security will consist of a user name and password to protect against unauthorized access. Security between the app and Bluetooth module will consist of  pin matching to ensure that the app is connecting to the correct Bluetooth device.
 
 ### User Characteristics
 
-The mobile application's user interface needs to be simple, user friendly, and easy to use. The purpose of the system is make it easier for a user to open a car door when they may be otherwise burdened with thier hands full.
+The mobile application's user interface needs to be simple, user friendly, and easy to use. The purpose of the system is making it easier for a user to open a car door when they may be otherwise burdened with their hands full.
 
 In order for the system to benefit a user, the system must be as simple as possible.
 
 1. The app must load quickly and after a brief splash screen the app needs to be ready to use.
 
-2. Once on the main screen one button press should set the app in a state to recieve voice commands.
+2. Once on the main screen one button press should set the app in a state to receive voice commands.
 
 3. If a valid command is issued then no further user action should be required to open or close a door.
 
@@ -211,7 +211,7 @@ In order for the system to benefit a user, the system must be as simple as possi
 
 ### Documentation
 
-**Design Documentation.** This document shall be a detailed design that describes how the various components of the system work. It may include block diagrams, schematics, or code snippets, as appropriate. The audience of this document is other develoers who might want to understand and extend the system.
+**Design Documentation.** This document shall be a detailed design that describes how the various components of the system work. It may include block diagrams, schematics, or code snippets, as appropriate. The audience of this document is other developers  who might want to understand and extend the system.
 
 **User Documentation.** This document shall describe how to install, configure, and use the system. The audience of this document is people who want to use the system without understanding the internal operation of the system
 
@@ -225,7 +225,7 @@ The development board will connect to 4 servos that opens individual doors. The 
 
 ### Internationalization
 
-Open Seasame will only support english at this time.
+Open Sesame will only support english at this time.
 
 ### Environment
 

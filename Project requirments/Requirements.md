@@ -193,7 +193,7 @@ Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-da
 
 ### Security
 
-App security will consist of a user name and password to protect against unautorized access. Security between the app and bluetooth module will consist of a pin matching to aunthetificate that the app is connecting to the correct bluetooth device.
+App security will consist of a user name and password to protect against unautorized access. Security between the app and bluetooth module will consist of  pin matching to ensure that the app is connecting to the correct bluetooth device.
 
 ### User Characteristics
 

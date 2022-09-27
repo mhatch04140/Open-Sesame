@@ -18,7 +18,7 @@ Since the mid-2000s, cars have had apps that alert you of oil changes, remote st
 Furthermore, the vehicle would include safety features to prevent children from getting pinned when the doors are opened or closed. When a signal is received from the door robot arm, the program instructs the car's computer on which way to open or close the door. The vehicle can then be entered and exited safely by children. 
 From the car computer to the door operation, the car manufacturer is responsible for all mechanical and computer operations.
 
-Ultimately, this project will only involve a prototype. Currently, there is no plan to replace the existing car system. Our prototype will have an Arduino processor, Bluetooth technology, servo motors to represent the opening and closing of car doors, a handheld device (phone), and LED lights representing go or no go for door operation.
+Ultimately, this project will only involve a prototype. Currently, there is no plan to replace the existing car system. Our prototype will have an Arduino processor, Bluetooth technology, servo motors to represent the opening and closing of car doors, a Android OS (phone), and LED lights representing go or no go for door operation.
  
 
 ## Functional Requirments
@@ -35,7 +35,7 @@ Other Resources Needed
 
 car -> prototype
 
-Handheld Phone
+Android OS Phone
 
 User Action
 
@@ -58,7 +58,7 @@ After the handheld device receives a command from the operator, the door closes.
 
 Other Resources Needed
 
-Handheld device
+Android OS phone
 
 Car -> prototype
 

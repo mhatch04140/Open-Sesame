@@ -164,15 +164,14 @@ When the LED light on the APP turns green, the voice commands can be completed. 
 
 ### Platform
 
-<<<<<<< HEAD
 Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatible  with the latest version of the OS Android 12 Snowcone.
 
 The hardware component of Open Sesame will be based on an Arduino development board. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
-=======
+
 Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatable with the latest version of the Android OS and have compatability back to Android 12 Snowcone.
 
 The hardware component of Open Sesame will be based on an Arduino development board. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p microcontoller.
->>>>>>> 91bc956b03946e585107b861e935f65ca96e2101
+
 
 ### Performance
 

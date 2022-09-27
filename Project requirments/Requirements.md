@@ -18,7 +18,7 @@ Since the mid-2000s, cars have had apps that alert you of oil changes, remote st
 Furthermore, the vehicle would include safety features to prevent children from getting pinned when the doors are opened or closed. When a signal is received from the door robot arm, the program instructs the car's computer on which way to open or close the door. The vehicle can then be entered and exited safely by children. 
 From the car computer to the door operation, the car manufacturer is responsible for all mechanical and computer operations.
 
-Ultimately, this project will only involve a prototype. Currently, there is no plan to replace the existing car system. Our prototype will have an Arduino processor, Bluetooth technology, servo motors to represent the opening and closing of car doors, a Android OS (phone), and LED lights representing go or no go for door operation.
+Ultimately, this project will only involve a prototype. Currently, there is no plan to replace the existing car system. Our prototype will have an Arduino processor, Bluetooth technology, servo motors to represent the opening and closing of car doors, a handheld device (phone), and LED lights representing go or no go for door operation.
  
 
 ## Functional Requirments
@@ -35,7 +35,7 @@ Other Resources Needed
 
 car -> prototype
 
-Android OS Phone
+Handheld Phone
 
 User Action
 
@@ -58,7 +58,7 @@ After the handheld device receives a command from the operator, the door closes.
 
 Other Resources Needed
 
-Android OS phone
+Handheld device
 
 Car -> prototype
 
@@ -164,27 +164,28 @@ When the LED light on the APP turns green, the voice commands can be completed. 
 
 ### Platform
 
-Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatable with the latest version of the OS Android 12 Snowcone.
+Open Sesame will be a mobile application that operates only the Android OS. The mobile application will be designed to be compatable with the latest version of the Android OS and have compatability back to Android 12 Snowcone.
 
-The hardware component of Open Sesame will be based on an Arduino developmentboard. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
+The hardware component of Open Sesame will be based on an Arduino development board. An Arduino Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p microcontoller.
 
 ### Performance
 
-#### Moblile App 
+#### Mobile App 
 
 | Category | Limit |
 |--------- |-------|
 |**App Loading time:** | 3 sec |
-|**App Size:** |  30Mb |
+|**App Size:** |  <30Mb |
 |**Command response time** | 1 sec |
-|**Bluetooth range:** | 50 ft |
+|**Bluetooth range:** |~ 50 ft |
 
 #### Door Actuation System 
 
 | Category | Limit |
 |--------- |-------|
-|**Open doors** | 4 |
+|**Max # of open doors** | 4 |
 |**Door opening time** |  5 sec |
+|**Door closing time** |  5 sec |
 |**Memory usage** | 30kb |
 |**Door will detect obstruction** | 500ms |
 

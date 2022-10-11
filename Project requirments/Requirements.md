@@ -3,13 +3,11 @@ Project Requirements
 Micheal Hatch & Phillip Vickers
 Copyright 2022
 
-<!--- Comments by Peter Chapin, October 11, 2022 -->
 
 ## Introduction 
 
 @author Mike Hatch
 
-<<<<<<< HEAD
 In today's world, vehicles come with a wide range of options. The options range
 from telling you how many miles your car will go on a current gas level to when
 it's time to change the oil. Furthermore, some cars have options that dim their 
@@ -47,26 +45,17 @@ Ultimately, this project will only involve a prototype. Currently, there is no p
 to replace the existing car system. Our prototype will have an Arduino processor, 
 Bluetooth technology, servo motors to represent the opening and closing of car doors,
 a handheld device (phone), and LED lights representing go or no go for door operation.
-=======
-<!--- I'm not sure what tool/editor you used to produce this document, but each paragraph was
-represented as a single long line (fairly normal for wordprocessors, not as normal for text
-editors). I took the liberty of formatting the paragraphs with a width of 98 characters since
-the word wrapping made them hard to read in my text editor. -->
 
-In today's world, vehicles come with a wide range of options. The options range from telling you
-how many miles your car will go on a current gas level to when it's time to change the oil.
-Furthermore, some cars have options that dim their lights from high beam to low beam when you
-approach another car.
-
-<!--- You write "It is difficult for me.." yet this project has two authors. If you want to
-refer to yourself, use "we." It is also considered more professional to avoid talking directly
-to the reader with "you", although that viewpoint is somewhat controversial. -->
+In today's world, vehicles come with a wide range of options. The options range from 
+telling you how many miles your car will go on a current gas level to when it's time 
+to change the oil. Furthermore, some cars have options that dim their lights from high
+beam to low beam when you approach another car.
 
 It is common for people to have something in their hands when approaching a vehicle. If a door
 could be opened without having to use your hands in these situations, it would be very
 convenient. Nowadays, most of these options are controlled by motion sensors, which alert the
 main computer to open the hatch when movement is detected. There is a requirement for one leg to
-be used with this system. It is difficult for me to operate with one leg and a heavy item in one
+be used with this system. It is difficult for us to operate with one leg and a heavy item in one
 hand. I would prefer voice-activated accommodation. With voice recognition, any door will be
 able to be opened by the vehicle operator.
 
@@ -90,21 +79,13 @@ Ultimately, this project will only involve a prototype. Currently, there is no p
 the existing car system. Our prototype will have an Arduino processor, Bluetooth technology,
 servo motors to represent the opening and closing of car doors, a handheld device (phone), and
 LED lights representing go or no go for door operation.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
  
 
 ## Functional Requirements
 
 @author Mike Hatch
 
-<<<<<<< HEAD
 ### Use case #1 Door Open Operation
-=======
-<!--- I recommend naming use cases instead of (or in addition to) numbering them. This limits
-confusion when you feel the need to add another use case and renumber the existing ones. -->
-
-### Use case #1 
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
 
 Goal
 
@@ -118,60 +99,13 @@ Handheld Phone
 
 User Action
 
-<<<<<<< HEAD
 In order to use the application, the user must first open it. After that, the user 
 touches the Voice Activation Button. The user then says, "Open the right front door." 
 
 Product Action
 
 If all safety conditions are met, a blue tooth signal is transmitted to the car and 
-the computer opens the right front door.
-=======
-In order to use the application, the user must first open it. After that, the user touches the
-Voice Activation Button. The user then says, "Open the right front door."
-
-Product Action
-
-If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer
-opens the right front door.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
-
-Safety Conditions
-
-Parking Brake must be applied.
-Car must be parked.
-
-<<<<<<< HEAD
-### Use case #2 Door Close Operation
-=======
-<!--- Does the user get any feedback about the success or failure of this operation? -->
-
-### Use case #2
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
-
-<!--- Should the words "Goal", "Handheld device", etc., be low-level headers? I feel like they
-probably should be. -->
-
-Goal
-
-After the handheld device receives a command from the operator, the door closes.
-
-Other Resources Needed
-
-Handheld device
-
-Car -> prototype
-
-User Action
-<<<<<<< HEAD
-In order to use the app, the user must first open it. The user then presses a voice 
-activation button. The user then says, "Close the right front door." 
-
-Product Action
-
-If all safety conditions are met, a blue tooth signal is transmitted to the car 
 and the computer opens the right front door.
-=======
 
 In order to use the app, the user must first open it. The user then presses a voice activation
 button. The user then says, "Close the right front door."
@@ -180,14 +114,13 @@ Product Action
 
 If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer
 opens the right front door.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
 
 Safety Conditions
 
 Parking Brake must be applied.
 Car must be parked.
 
-<<<<<<< HEAD
+
 ## Use case #3 Door Block Operation Opening Car Door
 =======
 <!--- Again, does the user get any feedback on the success/failure of this operation? -->

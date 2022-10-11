@@ -201,7 +201,7 @@ Product Action
 
 When the parking brake is applied, the car sends the safety signal that the break 
 has been applied.
-=======
+
 It will not be possible to operate the App if the parking brake is not applied. App will
 complete the operation if parking brake is applied.
 
@@ -213,7 +213,7 @@ used since the parking brake has been taken care of.
 Product Action
 
 When the parking brake is applied, the car sends the safety signal that the break has been
-applied.
+applied. Durinf the proto type build the parking brake will be idnetified as a LED light.
 
 ## Use case #6 No Operation during Car Movement
 

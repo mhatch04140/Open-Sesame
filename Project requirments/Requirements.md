@@ -231,26 +231,12 @@ operation of the App if the LED light is red. This is only on the proto type boa
 
 ### Platform
 
-<!--- Some people like using "shall" when talking about specific mandatory attributes ("Open
-Sesame *shall* be a mobile application..."). You might find that overly formal. See RFC-2119 for
-more ideas about how to employ specific words like "may", "should", "must", etc. -->
-
-Open Sesame will be a mobile application that operates only the Android OS. The mobile
-application will be designed to be compatible with the latest version of the OS Android 12
+Open Sesame shall be a mobile application that operates only the Android OS. The mobile
+application must be designed to be compatible with the latest version of the OS Android 12
 Snowcone.
 
-The hardware component of Open Sesame will be based on an Arduino development board. An Arduino
-Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p.
-
-<!--- The following paragraphs appear to repeat the information in the first two paragraphs. -->
-
-Open Sesame will be a mobile application that operates only the Android OS. The mobile
-application will be designed to be compatable with the latest version of the Android OS and have
-compatability back to Android 12 Snowcone.
-
-The hardware component of Open Sesame will be based on an Arduino development board. An Arduino
-Uno Rev 3 will be used in this project. The Uno is built upon an Atmega328p microcontoller.
-
+The hardware component of Open Sesame should be based on an Arduino development board. An Arduino
+Uno Rev 3 should be used in this project. The Uno is built upon an Atmega328p.
 
 ### Performance
 
@@ -268,9 +254,6 @@ as well? -->
 
 #### Door Actuation System 
 
-<!--- Are hatches and sliding doors supported? This might be a question for the functional
-requirements. -->
-
 | Category | Limit |
 |--------- |-------|
 |**Max # of open doors** | 4 |
@@ -284,9 +267,7 @@ Arduino Uno [Tech Specs](https://docs.arduino.cc/resources/datasheets/A000066-da
 
 ### Security
 
-<!--- I wonder if fingerprint access makes sense for an app like this. It can be quicker. -->
-
-App security will consist of a user name and password to protect against unauthorized access.
+App security will consist of a user name and password to protect against unauthorized access. Further security options may be developed such as fingerprint access or facial reckognition if time allows.
 Security between the app and Bluetooth module will consist of pin matching to ensure that the
 app is connecting to the correct Bluetooth device.
 
@@ -300,8 +281,6 @@ In order for the system to benefit a user, the system must be as simple as possi
 
 1. The app must load quickly and after a brief splash screen the app needs to be ready to use.
 
-<!--- A home screen widget might make sense for this app, but perhaps that is not something you
-want to deal with now. A future addition, perhaps? -->
 
 2. Once on the main screen one button press should set the app in a state to receive voice
    commands.
@@ -311,6 +290,8 @@ want to deal with now. A future addition, perhaps? -->
 
 4. If an error or safety stoppage occurs then the app should clearly communicate the nature of
    the failure to the user.
+
+5. A home screen widget may be developed to further usability.
 
 ### Documentation
 

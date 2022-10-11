@@ -78,7 +78,10 @@ car manufacturer is responsible for all mechanical and computer operations.
 Ultimately, this project will only involve a prototype. Currently, there is no plan to replace
 the existing car system. Our prototype will have an Arduino processor, Bluetooth technology,
 servo motors to represent the opening and closing of car doors, a handheld device (phone), and
-LED lights representing go or no go for door operation.
+LED lights representing go or no go for door operation. 
+
+This project only intails hinged driver and passenger doors. Sliding and rear hatches are ourtside
+the scope of this project.
  
 
 ## Functional Requirements
@@ -114,6 +117,8 @@ Safety Conditions
 
 Parking Brake must be applied.
 Car must be parked.
+
+
 
 
 ## Use case #3 Car door is blocked by an object while opening.

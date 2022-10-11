@@ -85,7 +85,7 @@ LED lights representing go or no go for door operation.
 
 @author Mike Hatch
 
-### Use case #1 Door Open Operation
+### Use case #1 Voice command to open a car door.
 
 Goal
 
@@ -110,18 +110,13 @@ and the computer opens the right front door.
 In order to use the app, the user must first open it. The user then presses a voice activation
 button. The user then says, "Close the right front door."
 
-Product Action
-
-If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer
-opens the right front door.
-
 Safety Conditions
 
 Parking Brake must be applied.
 Car must be parked.
 
 
-## Use case #3 Door Block Operation Opening Car Door
+## Use case #3 Car door is blocked by an object while opening.
 
 The car computer informs the driver that the door cannot be opened due to a blockage.
 
@@ -138,7 +133,7 @@ Car computer
 User Action
 
 As soon as you receive the notification, determine what obstruction is present and 
-remove it if necessary.
+remove it if necessary. Then run the operation again to complete the seqeunce. 
 
 Product Action
 
@@ -149,13 +144,7 @@ carried out by the app.
 As soon as you receive the notification, determine what obstruction is present and remove it if
 necessary.
 
-Product Action
-
-Your App notifies you when the door is blocked. Upon removing the blocking item and ensuring all
-safety measures have been implemented. Normal operations will be carried out by the app.
-
-
-## Use case #4 Door Block Operation Closing Car Door
+## Use case #4 Car door is blocked by an object while closing.
 
 The car computer informs the driver that the door cannot close due to a blockage.
 
@@ -179,7 +168,7 @@ Your App notifies you when the door is blocked. Upon removing the blocking item 
 ensuring all safety measures have been implemented.  Normal operations will be carried
 out by the app.
 
-## Use case #5 Parking Brake Operation
+## Use case #5 Parking Brake Operation.
 
 The system will allow door operation when the parking brake is applied.
 
@@ -205,17 +194,7 @@ has been applied.
 It will not be possible to operate the App if the parking brake is not applied. App will
 complete the operation if parking brake is applied.
 
-User Action
-
-Make sure the parking brake has been applied before leaving a parked car. The App can then be
-used since the parking brake has been taken care of.
-
-Product Action
-
-When the parking brake is applied, the car sends the safety signal that the break has been
-applied. Durinf the proto type build the parking brake will be idnetified as a LED light.
-
-## Use case #6 No Operation during Car Movement
+## Use case #6 No operation of App while car is moving.
 
 A task is being asked of the App while the car is moving.
 
@@ -239,16 +218,7 @@ Voice commands can then be used.
 Initially, this will be a LED light that monitors tire rotation. For no tire rotation, the LED
 light will be green, while for tire rotation, it will be red.
 
-User Action
-
-In the event that a voice command is given, but not completed, the APP will display a "tire
-rolling error." The user must stop the car. Voice commands can then be used.
-
-Product action
-
-When the LED light on the APP turns green, the voice commands can be completed. 
-There will be no operation of the App if the LED light is red.
-
+Product Action
 
 When the LED light on the APP turns green, the voice commands can be completed. There will be no
 operation of the App if the LED light is red. This is only on the proto type board.

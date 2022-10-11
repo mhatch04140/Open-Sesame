@@ -46,46 +46,15 @@ to replace the existing car system. Our prototype will have an Arduino processor
 Bluetooth technology, servo motors to represent the opening and closing of car doors,
 a handheld device (phone), and LED lights representing go or no go for door operation.
 
-In today's world, vehicles come with a wide range of options. The options range from 
-telling you how many miles your car will go on a current gas level to when it's time 
-to change the oil. Furthermore, some cars have options that dim their lights from high
-beam to low beam when you approach another car.
-
-It is common for people to have something in their hands when approaching a vehicle. If a door
-could be opened without having to use your hands in these situations, it would be very
-convenient. Nowadays, most of these options are controlled by motion sensors, which alert the
-main computer to open the hatch when movement is detected. There is a requirement for one leg to
-be used with this system. It is difficult for us to operate with one leg and a heavy item in one
-hand. I would prefer voice-activated accommodation. With voice recognition, any door will be
-able to be opened by the vehicle operator.
-
-When was the last time you were asked, "Can you unlock your car door?" Next, you must find your
-keys, go to the window, and unlock the car door with the remote. With this App, you can say,
-"Ford, unlock all the doors." You can also do this while sitting comfortably.
-
-Since the mid-2000s, cars have had apps that alert you of oil changes, remote starting and
-stopping, and when the door is opened. Therefore, I'm developing an App to open doors with voice
-recognition. By walking within twenty feet of your car, you can say, "Ford, open the passenger
-door." The App would already know your make, model, and VIN number. With this application, you
-can operate any door in your car.
-
-Furthermore, the vehicle would include safety features to prevent children from getting pinned
-when the doors are opened or closed. When a signal is received from the door robot arm, the
-program instructs the car's computer on which way to open or close the door. The vehicle can
-then be entered and exited safely by children. From the car computer to the door operation, the
-car manufacturer is responsible for all mechanical and computer operations.
-
-Ultimately, this project will only involve a prototype. Currently, there is no plan to replace
-the existing car system. Our prototype will have an Arduino processor, Bluetooth technology,
-servo motors to represent the opening and closing of car doors, a handheld device (phone), and
-LED lights representing go or no go for door operation.
+This project only intails hinged driver and passenger doors. Sliding and rear hatches are ourtside
+the scope of this project.
  
 
 ## Functional Requirements
 
 @author Mike Hatch
 
-### Use case #1 Door Open Operation
+### Use case #1 Voice command to open a car door.
 
 Goal
 
@@ -110,18 +79,15 @@ and the computer opens the right front door.
 In order to use the app, the user must first open it. The user then presses a voice activation
 button. The user then says, "Close the right front door."
 
-Product Action
-
-If all safety conditions are met, a blue tooth signal is transmitted to the car and the computer
-opens the right front door.
-
 Safety Conditions
 
 Parking Brake must be applied.
 Car must be parked.
 
 
-## Use case #3 Door Block Operation Opening Car Door
+
+
+## Use case #3 Car door is blocked by an object while opening.
 
 The car computer informs the driver that the door cannot be opened due to a blockage.
 
@@ -138,7 +104,7 @@ Car computer
 User Action
 
 As soon as you receive the notification, determine what obstruction is present and 
-remove it if necessary.
+remove it if necessary. Then run the operation again to complete the seqeunce. 
 
 Product Action
 
@@ -149,13 +115,7 @@ carried out by the app.
 As soon as you receive the notification, determine what obstruction is present and remove it if
 necessary.
 
-Product Action
-
-Your App notifies you when the door is blocked. Upon removing the blocking item and ensuring all
-safety measures have been implemented. Normal operations will be carried out by the app.
-
-
-## Use case #4 Door Block Operation Closing Car Door
+## Use case #4 Car door is blocked by an object while closing.
 
 The car computer informs the driver that the door cannot close due to a blockage.
 
@@ -179,7 +139,7 @@ Your App notifies you when the door is blocked. Upon removing the blocking item 
 ensuring all safety measures have been implemented.  Normal operations will be carried
 out by the app.
 
-## Use case #5 Parking Brake Operation
+## Use case #5 Parking Brake Operation.
 
 The system will allow door operation when the parking brake is applied.
 
@@ -205,17 +165,7 @@ has been applied.
 It will not be possible to operate the App if the parking brake is not applied. App will
 complete the operation if parking brake is applied.
 
-User Action
-
-Make sure the parking brake has been applied before leaving a parked car. The App can then be
-used since the parking brake has been taken care of.
-
-Product Action
-
-When the parking brake is applied, the car sends the safety signal that the break has been
-applied. Durinf the proto type build the parking brake will be idnetified as a LED light.
-
-## Use case #6 No Operation during Car Movement
+## Use case #6 No operation of App while car is moving.
 
 A task is being asked of the App while the car is moving.
 
@@ -239,16 +189,7 @@ Voice commands can then be used.
 Initially, this will be a LED light that monitors tire rotation. For no tire rotation, the LED
 light will be green, while for tire rotation, it will be red.
 
-User Action
-
-In the event that a voice command is given, but not completed, the APP will display a "tire
-rolling error." The user must stop the car. Voice commands can then be used.
-
-Product action
-
-When the LED light on the APP turns green, the voice commands can be completed. 
-There will be no operation of the App if the LED light is red.
-
+Product Action
 
 When the LED light on the APP turns green, the voice commands can be completed. There will be no
 operation of the App if the LED light is red. This is only on the proto type board.

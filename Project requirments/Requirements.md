@@ -122,23 +122,14 @@ Car must be parked.
 
 
 ## Use case #3 Door Block Operation Opening Car Door
-=======
-<!--- Again, does the user get any feedback on the success/failure of this operation? -->
-
-## Use case #3
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
-
-<!--- I think this use case is really the error condition I was talking about earlier. Probably
-this information can be merged into the other use cases. The "User Action" here is somewhat
-outside the scope of these requirements since it does not pertain to the actions of your system.
-However, it does lead me to ask: if there is blockage does the door close automatically, or is
-it left in a half-open state? -->
 
 The car computer informs the driver that the door cannot be opened due to a blockage.
 
 Goal
 
-Whenever a door is opening and an object is blocking it, an alert appears on the app. 
+Whenever a door is opening and an object is blocking it, an alert appears on the app as an error.
+The error is reported to the app as blocked door. The door does not move from blocked location until 
+you tell the app to complete the operation.
 
 Other Resources Needed
 
@@ -146,7 +137,6 @@ Car computer
 
 User Action
 
-<<<<<<< HEAD
 As soon as you receive the notification, determine what obstruction is present and 
 remove it if necessary.
 
@@ -155,7 +145,7 @@ Product Action
 Your App notifies you when the door is blocked. Upon removing the blocking item and
 ensuring all safety measures have been implemented.  Normal operations will be 
 carried out by the app.
-=======
+
 As soon as you receive the notification, determine what obstruction is present and remove it if
 necessary.
 
@@ -163,7 +153,6 @@ Product Action
 
 Your App notifies you when the door is blocked. Upon removing the blocking item and ensuring all
 safety measures have been implemented. Normal operations will be carried out by the app.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
 
 
 ## Use case #4 Door Block Operation Closing Car Door
@@ -200,7 +189,6 @@ N/A
 
 Goal
 
-<<<<<<< HEAD
 It will not be possible to operate the App if the parking brake is not applied. App
 will complete the operation if parking brake is applied.
 
@@ -226,7 +214,6 @@ Product Action
 
 When the parking brake is applied, the car sends the safety signal that the break has been
 applied.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
 
 ## Use case #6 No Operation during Car Movement
 
@@ -239,16 +226,16 @@ rotation.
 
 Other Resources
 
-<<<<<<< HEAD
 Initially, this will be a LED light that monitors tire rotation. For no tire 
 rotation, the LED light will be green, while for tire rotation, it will be red.
+The LED light is located on the proto-type board.
 
 User Action
 
 In the event that a voice command is given, but not completed, the APP will 
-display a "tire rolling error." The user must stop the car.
+display a "tire rolling error." The user must stop the car
 Voice commands can then be used.
-=======
+
 Initially, this will be a LED light that monitors tire rotation. For no tire rotation, the LED
 light will be green, while for tire rotation, it will be red.
 
@@ -256,21 +243,16 @@ User Action
 
 In the event that a voice command is given, but not completed, the APP will display a "tire
 rolling error." The user must stop the car. Voice commands can then be used.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
-
 
 Product action
 
-<<<<<<< HEAD
 When the LED light on the APP turns green, the voice commands can be completed. 
 There will be no operation of the App if the LED light is red.
-=======
-<!-- You're talking about a simulated LED in the application, and not a real LED, yes? You
-might clarify this a little. -->
+
 
 When the LED light on the APP turns green, the voice commands can be completed. There will be no
-operation of the App if the LED light is red.
->>>>>>> 53320b1dcbe6a3de41eeb16a312112c834f5dcfe
+operation of the App if the LED light is red. This is only on the proto type board.
+
 
 
 ## Non-Functional Requirements

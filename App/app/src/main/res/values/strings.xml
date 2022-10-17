@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Open Sesame</string>
+    <string name="connectBtn">connect</string>
+    <string name="bluetooth_settings">Bluetooth settings</string>
+    <string name="bt_on">BT ON</string>
+    <string name="bt_off">BT OFF</string>
+    <string name="connect">connect</string>
 </resources>

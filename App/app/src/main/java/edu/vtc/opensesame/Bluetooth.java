@@ -38,9 +38,6 @@ public class Bluetooth extends AppCompatActivity {
         connect = findViewById(R.id.connect);
 
         btOn.setOnClickListener(view -> enableBt());
-
-
-
     }
 
     private void enableBt() {
@@ -53,9 +50,8 @@ public class Bluetooth extends AppCompatActivity {
             }
             else{
                 Toast.makeText(getApplicationContext(), "Bluetooth Already Enabled", Toast.LENGTH_LONG).show();
-
             }
 
-            }
         }
+    }
 }

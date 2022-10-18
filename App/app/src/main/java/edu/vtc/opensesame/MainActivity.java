@@ -2,9 +2,10 @@ package edu.vtc.opensesame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import edu.vtc.opensesame.ui.main.MainFragment;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,10 +13,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow();
-        }
+
+        Button connectBtn= findViewById(R.id.connectBtn);
+
+        connectBtn.setOnClickListener(v -> openNewActivity());
+
     }
+
+    /** Opens the bluetooth settings screen **/
+    private void openNewActivity() {
+        Intent intent = new Intent(this, Bluetooth.class);
+        startActivity(intent);
+    }
+
 }

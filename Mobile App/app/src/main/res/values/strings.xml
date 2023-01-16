@@ -5,4 +5,22 @@
     <string name="bt_on">BT ON</string>
     <string name="bt_off">BT OFF</string>
     <string name="connect">connect</string>
+    <string name="open_sesame">Open Sesame</string>
+    <string name="car_image">Car Image</string>
+    <string name="image_of_car">Image of car</string>
+    <string name="linked_bluetooth_devices">Linked Bluetooth Devices</string>
+    <string name="mic">Mic</string>
+    <string name="list_of_bt_devices">List of BT devices</string>
+    <string name="connect_to_vehicle">Connect to Vehicle</string>
+    <string name="view_connected_devices">View Connected Devices</string>
+    <string name="list_of_connected_devices">List of connected devices</string>
+    <string name="open_doors">Open Doors!</string>
+    <string name="open_doors_text">Open Doors!</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="driver_side_front">Driver Side Front</string>
+    <string name="closed">Closed</string>
+    <string name="open">Open</string>
+    <string name="driver_side_rear">Driver Side Rear</string>
+    <string name="passenger_side_rear">Passenger Side Rear</string>
+    <string name="passenger_side_front">Passenger Side Front</string>
 </resources>

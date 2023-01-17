@@ -118,7 +118,7 @@ public class BluetoothSettings extends AppCompatActivity {
         connectToVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btReadings.setText("");
+                btReadings.setText("Trying to Connect");
                 if (arduinoBTModule != null) {
                     // subscribeOn:  the thread in which you want to execute the action
                     // observeOn: the thread in which you want to get the response
@@ -183,7 +183,7 @@ public class BluetoothSettings extends AppCompatActivity {
                                 Log.d(TAG, "HC-06 found");
                                 arduinoUUID = device.getUuids()[0].getUuid();
                                 arduinoBTModule = device;
-                                //HC -05 Found, enabling the button to read results
+                                //HC -06 Found, enabling the button to read results
                                 connectToVehicle.setEnabled(true);
                             }
                             btDevices.setText(btDevicesString);

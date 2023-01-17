@@ -21,6 +21,7 @@ public class ConnectedThread {
     private final BluetoothSocket mmSocket;
     private final InputStream mmInStream;
     private String valueRead;
+    static OutputStream mmOutStream;
 
     /**
      * Constructor for the ConnectedThread class.
@@ -43,7 +44,7 @@ public class ConnectedThread {
         }
 
         mmInStream = tmpIn;
-        OutputStream mmOutStream = tmpOut;
+        mmOutStream = tmpOut;
     }
 
     /**
@@ -99,6 +100,12 @@ public class ConnectedThread {
         } catch (IOException e) {
             Log.e(TAG, "Could not close the connect socket", e);
         }
+    }
+
+    public static void write(byte[] bytes) {
+        try {
+            mmOutStream.write(bytes);
+        } catch (IOException e) { }
     }
 
 

@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ToggleButton;
 
+import java.nio.charset.Charset;
 import java.util.Objects;
 
 public class OpenDoors extends AppCompatActivity {
+
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +33,21 @@ public class OpenDoors extends AppCompatActivity {
        driverSideFrontToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
            if (isChecked) {
                // The toggle is enabled
+               message = "1";
+               sendMessage();
            } else {
-               // The toggle is disabled
+               message = "2";
+               sendMessage();
            }
        });
 
         driverSideRearToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                // The toggle is enabled
+                message = "3";
+                sendMessage();
             } else {
-                // The toggle is disabled
+                message = "4";
+                sendMessage();
             }
         });
 
@@ -59,6 +67,9 @@ public class OpenDoors extends AppCompatActivity {
             }
         });
 
-
+    }
+    public void sendMessage() {
+        byte[] bytes = message.getBytes(Charset.defaultCharset());
+        ConnectedThread.write(bytes);
     }
 }

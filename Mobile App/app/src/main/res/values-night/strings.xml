@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="connect">connect</string>
+    <string name="car_image">Car Image</string>
+    <string name="view_connected_devices">View Connected Devices</string>
+    <string name="list_of_connected_devices">List of connected devices</string>
+    <string name="open_doors">Open Doors!</string>
+    <string name="open_doors_text">Open Doors!</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="driver_side_front">Driver Side Front</string>
+    <string name="closed">Closed</string>
+    <string name="open">Open</string>
+    <string name="driver_side_rear">Driver Side Rear</string>
+    <string name="passenger_side_rear">Passenger Side Rear</string>
+    <string name="passenger_side_front">Passenger Side Front</string>
 </resources>

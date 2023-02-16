@@ -13,6 +13,7 @@ package edu.vtc.opensesame;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -22,16 +23,23 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -61,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
     /* Enables BT */
     private int REQUEST_ENABLE_BT=1;
 
+    ArrayList<String> data;
+
+    SpeechRecognizer speechRecognizer;
+
+    int count=0;
 
 
     @Override
@@ -75,6 +88,95 @@ public class MainActivity extends AppCompatActivity {
         TextView btDevices = findViewById(id.textView);
         Button searchDevices = findViewById(id.btDevices);
 
+        ImageButton mic = findViewById(R.id.micButton);
+        TextView voiceCommand= findViewById(id.voiceCommand);
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},1);
+        }
+
+        speechRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
+
+        Intent speechRecognizerIntent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+        mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count==0){
+                   mic.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_24));
+
+                   //start
+                    speechRecognizer.startListening(speechRecognizerIntent);
+                    count=1;
+                }
+                else{
+                    mic.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_off_24));
+                    //turn off
+                    speechRecognizer.stopListening();
+                    count=0;
+                }
+            }
+        });
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+
+            }
+
+            @Override
+            public void onRmsChanged(float v) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] bytes) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int i) {
+
+            }
+
+            @Override
+            public void onResults(Bundle bundle) {
+                data = bundle.getStringArrayList(speechRecognizer.RESULTS_RECOGNITION);
+                voiceCommand.setText(data.get(0));
+
+                Toast.makeText(getApplicationContext() ,data.get(0),Toast.LENGTH_SHORT).show();
+
+                if(data.get(0)=="Open Driver door"){
+                    message="1";
+                    sendMessage();
+                }
+                else if (data.get(0)=="close driver door"){
+                    message="2";
+                    sendMessage();
+                }
+            }
+
+            @Override
+            public void onPartialResults(Bundle bundle) {
+                Toast.makeText(getApplicationContext() ,data.get(0),Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onEvent(int i, Bundle bundle) {
+
+            }
+        });
 
         //Using a handler to update the interface in case of an error connecting to the BT device
         handler = new Handler(Looper.getMainLooper()) {
@@ -197,6 +299,17 @@ public class MainActivity extends AppCompatActivity {
 
     }//end of onCreate()
 
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT);
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT);
+            }
+        }
+    }
 
     /**
      * Sets up the toggle buttons for the doors and onChangeListeners

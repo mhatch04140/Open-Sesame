@@ -55,7 +55,8 @@ void loop() {
             delay(5);                       
            }
           break;
-            case '3': 
+        
+        case '3': 
         {
           for (pos = 0; pos <= 180; pos += 1) { 
             driverSideRear.write(pos);              

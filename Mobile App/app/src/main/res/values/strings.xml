@@ -24,4 +24,6 @@
     <string name="passenger_side_rear">Passenger Side Rear</string>
     <string name="passenger_side_front">Passenger Side Front</string>
     <string name="view_bluetooth_devices">View bluetooth devices</string>
+    <string name="voice_command">Voice Command</string>
+    <string name="microphone_button">Microphone Button</string>
 </resources>

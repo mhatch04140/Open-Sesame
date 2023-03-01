@@ -23,6 +23,9 @@ const int DRIVER_REAR_SERVO_PIN=7;
 const int PASSENGER_FRONT_SERVO_PIN=8;
 const int PASSENGER_REAR_SERVO_PIN=9;
 
+int sensorPin = A0;
+int sensorValue;
+
 int pos = 0;
 
 void setup() {
@@ -42,10 +45,16 @@ void loop() {
       {
         case '1': 
         {
-          for (pos = 0; pos <= 180; pos += 1) { 
-            driverSideFront.write(pos);              
-            delay(5); 
+          for (pos = 0; pos <= 179; pos += 1) { 
+           
+            sensorValue=analogRead(sensorPin);  
+            Serial.println(sensorValue)   ;
+             driverSideFront.write(pos);         
+            delay(5);
           }
+        
+
+
           break;
         }
         case '2': 
@@ -79,3 +88,4 @@ void loop() {
    }
    delay(50);     
  }
+

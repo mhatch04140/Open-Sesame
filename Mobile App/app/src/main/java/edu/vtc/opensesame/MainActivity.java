@@ -7,7 +7,7 @@ package edu.vtc.opensesame;
 
   @author Phillip Vickers
  *
- * Last Edit: 2/15/2023
+ * Last Edit: 3/5/2023
  */
 
 import static android.content.ContentValues.TAG;
@@ -154,20 +154,36 @@ public class MainActivity extends AppCompatActivity {
                 data = bundle.getStringArrayList(speechRecognizer.RESULTS_RECOGNITION);
                 voiceCommand.setText(data.get(0));
 
-                if(data.get(0).equalsIgnoreCase("Open driver door")){
+                if(data.get(0).equalsIgnoreCase("Open driver front door")){
                     message="1";
                     sendMessage();
                 }
-                else if (data.get(0).equalsIgnoreCase("Close driver door")){
+                else if (data.get(0).equalsIgnoreCase("Close driver front door")){
                     message="2";
                     sendMessage();
                 }
-                else if(data.get(0).equalsIgnoreCase("Open passenger door")){
+                else if(data.get(0).equalsIgnoreCase("Open driver rear door")){
                     message="3";
                     sendMessage();
                 }
-                else if(data.get(0).equalsIgnoreCase("Close passenger door")){
+                else if(data.get(0).equalsIgnoreCase("Close driver rear door")){
                     message="4";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Open passenger front door")){
+                    message="5";
+                    sendMessage();
+                }
+                else if (data.get(0).equalsIgnoreCase("Close passenger front door")){
+                    message="6";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Open passenger rear door")){
+                    message="7";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Close passenger rear door")){
+                    message="8";
                     sendMessage();
                 }
                 else{

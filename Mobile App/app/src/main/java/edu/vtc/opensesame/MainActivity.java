@@ -1,13 +1,13 @@
 package edu.vtc.opensesame;
-/**
- * This class represents the main activity for the app.
+/*
+  This class represents the main activity for the app.
+
+  Credit: Used the tutorial from theFrugalEngineer to to develop bluetooth connectivity.
+  https://github.com/The-Frugal-Engineer/ArduinoBTExampleLEDControl
+
+  @author Phillip Vickers
  *
- * Credit: Used the tutorial from theFrugalEngineer to to develop bluetooth connectivity.
- * https://github.com/The-Frugal-Engineer/ArduinoBTExampleLEDControl
- *
- * @author Phillip Vickers
- *
- * Last Edit: 1/30/2023
+ * Last Edit: 3/5/2023
  */
 
 import static android.content.ContentValues.TAG;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int ERROR_READ = 0;
 
     /* Enables BT */
-    private int REQUEST_ENABLE_BT=1;
+    private final int REQUEST_ENABLE_BT=1;
 
     ArrayList<String> data;
 
@@ -154,27 +154,50 @@ public class MainActivity extends AppCompatActivity {
                 data = bundle.getStringArrayList(speechRecognizer.RESULTS_RECOGNITION);
                 voiceCommand.setText(data.get(0));
 
-                Toast.makeText(getApplicationContext() ,data.get(0),Toast.LENGTH_SHORT).show();
-
-                if(data.get(0)=="Open Driver door"){
+                if(data.get(0).equalsIgnoreCase("Open driver front door")){
                     message="1";
                     sendMessage();
                 }
-                else if (data.get(0)=="close driver door"){
+                else if (data.get(0).equalsIgnoreCase("Close driver front door")){
                     message="2";
                     sendMessage();
                 }
+                else if(data.get(0).equalsIgnoreCase("Open driver rear door")){
+                    message="3";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Close driver rear door")){
+                    message="4";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Open passenger front door")){
+                    message="5";
+                    sendMessage();
+                }
+                else if (data.get(0).equalsIgnoreCase("Close passenger front door")){
+                    message="6";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Open passenger rear door")){
+                    message="7";
+                    sendMessage();
+                }
+                else if(data.get(0).equalsIgnoreCase("Close passenger rear door")){
+                    message="8";
+                    sendMessage();
+                }
+                else{
+                    Toast.makeText(getApplicationContext() ,"Invalid Command",Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
             public void onPartialResults(Bundle bundle) {
-                Toast.makeText(getApplicationContext() ,data.get(0),Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onEvent(int i, Bundle bundle) {
-
             }
         });
 
@@ -219,6 +242,10 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.BLUETOOTH_CONNECT},1);
+        }
+
         //Button to view all paired BT devices
         searchDevices.setOnClickListener(new View.OnClickListener() {
             //Display all the linked BT Devices
@@ -248,6 +275,9 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Log.d(TAG, "Bluetooth is enabled");
                     }
+
+
+
                     String btDevicesString="";
                     Set< BluetoothDevice > pairedDevices = bluetoothAdapter.getBondedDevices();
 

@@ -1,0 +1,1 @@
+[Open Sesame Manual(google doc)](https://docs.google.com/document/d/1dYvVdg3mPF8lGHqbkvZp-yrHmDD6c5Wfs0Piz9ITOHA/edit))

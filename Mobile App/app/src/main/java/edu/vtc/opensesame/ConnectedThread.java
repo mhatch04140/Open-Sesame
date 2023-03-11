@@ -21,12 +21,12 @@ import java.io.OutputStream;
 
     public class ConnectedThread extends Thread {
 
-        private static final String TAG = "FrugalLogs";
+        private static final String TAG = "Open Sesame";
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
         private static OutputStream mmOutStream;
-        private String valueRead;
-
+        private static String valueRead;
+        private static int Status = 0;
         public InputStream getMmInStream() {
             return mmInStream;
         }
@@ -40,8 +40,6 @@ import java.io.OutputStream;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
 
-            // Get the input and output streams; using temp objects because
-            // member streams are final.
             try {
                 tmpIn = socket.getInputStream();
             } catch (IOException e) {
@@ -52,13 +50,11 @@ import java.io.OutputStream;
             } catch (IOException e) {
                 Log.e(TAG, "Error occurred when creating output stream", e);
             }
-            //Input and Output streams members of the class
-            //We wont use the Output stream of this project
             mmInStream = tmpIn;
             mmOutStream = tmpOut;
         }
 
-        public String getValueRead(){
+        public static String getValueRead(){
             return valueRead;
         }
 
@@ -70,7 +66,7 @@ import java.io.OutputStream;
 
             // Keep listening to the InputStream until an exception occurs.
             //We just want to get 1 temperature readings from the Arduino
-            while (numberOfReadings < 1) {
+             while (true){
                 try {
 
                     buffer[bytes] = (byte) mmInStream.read();
@@ -82,23 +78,23 @@ import java.io.OutputStream;
                         //Value to be read by the Observer streamed by the Obervable
                         valueRead=readMessage;
                         bytes = 0;
-                        numberOfReadings++;
+
                     } else {
                         bytes++;
                     }
-
                 } catch (IOException e) {
                     Log.d(TAG, "Input stream was disconnected", e);
-                    break;
                 }
-            }
 
+            }
         }
         //Write to the BT Stream
         public static void write(String input) {
             byte[] bytes = input.getBytes(); //converts entered String into bytes
             try {
                 Log.d(TAG, "Trying mmOut");
+
+
                 mmOutStream.write(bytes);
             } catch (IOException e) {
                 Log.e("Send Error","Unable to send message",e);

@@ -23,12 +23,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemClock;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,11 +71,19 @@ public class MainActivity extends AppCompatActivity {
     /* Enables BT */
     private final int REQUEST_ENABLE_BT=1;
 
+    ToggleButton driverRear;
+    ToggleButton driverFront;
+    ToggleButton passengerFront;
+    ToggleButton passengerRear;
+
+    String status;
+
     ArrayList<String> data;
 
     SpeechRecognizer speechRecognizer;
 
     int count=0;
+    TextView doorStatus;
 
 
     @Override
@@ -86,10 +96,14 @@ public class MainActivity extends AppCompatActivity {
 
         Button connectToVehicle = findViewById(id.connectVehicle);
         TextView btDevices = findViewById(id.textView);
+
         Button searchDevices = findViewById(id.btDevices);
 
         ImageButton mic = findViewById(R.id.micButton);
         TextView voiceCommand= findViewById(id.voiceCommand);
+
+        setUpDoors();
+
 
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},1);
@@ -154,35 +168,39 @@ public class MainActivity extends AppCompatActivity {
                 data = bundle.getStringArrayList(speechRecognizer.RESULTS_RECOGNITION);
                 voiceCommand.setText(data.get(0));
 
-                if(data.get(0).equalsIgnoreCase("Open driver front door")){
+                if(data.get(0).equalsIgnoreCase("Open driver front")){
                     message="1";
                     sendMessage();
                 }
-                else if (data.get(0).equalsIgnoreCase("Close driver front door")){
-                    message="2";
+                else if (data.get(0).equalsIgnoreCase("Close driver front")){
+                    message="1";
                     sendMessage();
                 }
-                else if(data.get(0).equalsIgnoreCase("Open driver rear door")){
-                    message="3";
-                    sendMessage();
+                else if(data.get(0).equalsIgnoreCase("Open driver rear")){
+//                    message="3";
+//                    sendMessage();
+                    driverRear.setChecked(true);
+
                 }
-                else if(data.get(0).equalsIgnoreCase("Close driver rear door")){
-                    message="4";
-                    sendMessage();
+                else if(data.get(0).equalsIgnoreCase("Close driver rear")){
+//                    message="4";
+//                    sendMessage();
+
+                    driverRear.setChecked(false);
                 }
-                else if(data.get(0).equalsIgnoreCase("Open passenger front door")){
+                else if(data.get(0).equalsIgnoreCase("Open passenger front")){
                     message="5";
                     sendMessage();
                 }
-                else if (data.get(0).equalsIgnoreCase("Close passenger front door")){
+                else if (data.get(0).equalsIgnoreCase("Close passenger front")){
                     message="6";
                     sendMessage();
                 }
-                else if(data.get(0).equalsIgnoreCase("Open passenger rear door")){
+                else if(data.get(0).equalsIgnoreCase("Open passenger rear")){
                     message="7";
                     sendMessage();
                 }
-                else if(data.get(0).equalsIgnoreCase("Close passenger rear door")){
+                else if(data.get(0).equalsIgnoreCase("Close passenger rear")){
                     message="8";
                     sendMessage();
                 }
@@ -236,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     // we call the onNext() function
                     //This value will be observed by the observer
                     emitter.onNext(connectedThread.getValueRead());
+
                 }
             }
             emitter.onComplete();
@@ -312,16 +331,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Trying to connect to vehicle",Toast.LENGTH_SHORT).show();
                 if (arduinoBTModule != null) {
                     Toast.makeText(getApplicationContext(),"Connected to vehicle",Toast.LENGTH_LONG).show();
-                    connectToVehicle.setEnabled(false);
-                    connectToVehicle.setVisibility(View.GONE);
-                    searchDevices.setVisibility(View.GONE);
-                    btDevices.setVisibility(View.GONE);
-                    setUpDoorToggles();
+
+                    setUpDoors();
                     connectToBTObservable.
                             observeOn(AndroidSchedulers.mainThread()).
                             subscribeOn(Schedulers.io()).
                             subscribe(valueRead -> {
                             //can do something here if needed
+                                status = valueRead;
+
+
+                                Log.e(TAG, status);
+                                //
                             });
                 }
             }
@@ -344,67 +365,125 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Sets up the toggle buttons for the doors and onChangeListeners
      */
-    private void setUpDoorToggles() {
+    private void setUpDoors() {
         /* Toggle Buttons for opening doors */
-        ToggleButton driverSideFrontToggle = findViewById(id.driverSideFrontToggle);
-        ToggleButton driverSideRearToggle = findViewById(id.driverSideRearToggle);
-        ToggleButton passengerSideFrontToggle = findViewById(id.passengerSideFrontToggle);
-        ToggleButton passengerSideRearToggle = findViewById(id.passengerSideRearToggle);
 
-        driverSideFrontToggle.setEnabled(true);
-        driverSideRearToggle.setEnabled(true);
-        passengerSideFrontToggle.setEnabled(true);
-        passengerSideRearToggle.setEnabled(true);
+        driverFront = findViewById(id.driverFront);
+        driverRear = findViewById(id.driverRearToggle);
+        passengerFront = findViewById(id.passengerFront);
+        passengerRear = findViewById(id.passengerRear);
 
-        driverSideFrontToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                // The toggle is enabled
-                message = "1";
-                Toast.makeText(getApplicationContext(),"Opening driverside front",Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "Opening driver front");
-                sendMessage();
-            } else {
-                message = "2";
-                Toast.makeText(getApplicationContext(),"Closing driverside front",Toast.LENGTH_SHORT).show();
-                sendMessage();
+
+        driverFront.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(driverRear.isChecked()){
+                    message="1";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverRear);
+
+                }
+                else {
+                    message="2";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+
+                    checkStatus(driverRear);
+
+                }
+
             }
         });
 
-        driverSideRearToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                message = "3";
-                Toast.makeText(getApplicationContext(),"Opening driverside rear",Toast.LENGTH_SHORT).show();
-                sendMessage();
-            } else {
-                message = "4";
-                Toast.makeText(getApplicationContext(),"Closing driverside rear",Toast.LENGTH_SHORT).show();
-                sendMessage();
+        driverRear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(driverRear.isChecked()){
+                    message="3";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverRear);
+
+                }
+                else {
+                    message="4";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+
+                   checkStatus(driverRear);
+
+                }
+            }
+        });
+        passengerFront.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(driverRear.isChecked()){
+                    message="5";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverRear);
+
+                }
+                else {
+                    message="6";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+
+                    checkStatus(driverRear);
+                }
+            }
+        });
+        passengerRear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(driverRear.isChecked()){
+                    message="7";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverRear);
+
+                }
+                else {
+                    message="8";
+                    sendMessage();
+                    SystemClock.sleep(1700);
+
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+
+                    checkStatus(driverRear);
+
+                }
+
             }
         });
 
-        passengerSideFrontToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                message = "5";
-                Toast.makeText(getApplicationContext(),"Opening passengerside front",Toast.LENGTH_SHORT).show();
-                sendMessage();
-            } else {
-                message = "6";
-                Toast.makeText(getApplicationContext(),"Closing passengerside front",Toast.LENGTH_SHORT).show();
-                sendMessage();
-            }
-        });
 
-        passengerSideRearToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                message = "7";
-                Toast.makeText(getApplicationContext(),"Opening passenger front",Toast.LENGTH_SHORT).show();
-                sendMessage();
-            } else {
-                message = "8";
-                Toast.makeText(getApplicationContext(),"Opening passenger rear",Toast.LENGTH_SHORT).show();
-                sendMessage();
-            }
-        });
+
+
     }
 
     /**
@@ -412,9 +491,20 @@ public class MainActivity extends AppCompatActivity {
      */
     public void sendMessage() {
         ConnectedThread.write(message);
-        Log.d(TAG, "Sending Message");
-        }
 
+        Log.d(TAG, "Sending Message");
+    }
+
+    public void checkStatus(ToggleButton door){
+        int statusCode=1;
+      if(status.equals("0\r")) statusCode = 0;
+      if(status.equals("180\r")) statusCode = 180;
+
+        if(statusCode==0) door.setChecked(false);
+        else if(statusCode==180){
+            door.setChecked(true);
+        }
+    }
 
 }//end of class
 

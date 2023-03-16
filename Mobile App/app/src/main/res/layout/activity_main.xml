@@ -44,15 +44,12 @@
                 android:textSize="20sp" />
 
             <ToggleButton
-                android:id="@+id/driverSideFrontToggle"
+                android:id="@+id/driverFront"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:enabled="false"
-                android:text="@string/togglebutton"
+                android:text="ToggleButton"
                 android:textOff="@string/closed"
-                android:textOn="@string/open"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                android:textOn="@string/open" />
 
         </TableRow>
 
@@ -70,14 +67,15 @@
                 android:textSize="20sp" />
 
             <ToggleButton
-                android:id="@+id/driverSideRearToggle"
+                android:id="@+id/driverRearToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:enabled="false"
-                android:text="@string/togglebutton"
+                android:checked="false"
+                android:text="@string/closed"
+                android:textColor="#070809"
                 android:textOff="@string/closed"
                 android:textOn="@string/open" />
+
         </TableRow>
 
         <TableRow
@@ -94,15 +92,13 @@
                 android:textSize="20sp" />
 
             <ToggleButton
-                android:id="@+id/passengerSideFrontToggle"
+                android:id="@+id/passengerFront"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:enabled="false"
-                android:text="@string/togglebutton"
+                android:text="ToggleButton"
                 android:textOff="@string/closed"
-                android:textOn="@string/open"
-                tools:ignore="TextContrastCheck" />
+                android:textOn="@string/open" />
+
         </TableRow>
 
         <TableRow
@@ -119,14 +115,13 @@
                 android:textSize="20sp" />
 
             <ToggleButton
-                android:id="@+id/passengerSideRearToggle"
+                android:id="@+id/passengerRear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:enabled="false"
-                android:text="@string/togglebutton"
+                android:text="ToggleButton"
                 android:textOff="@string/closed"
                 android:textOn="@string/open" />
+
         </TableRow>
     </TableLayout>
 

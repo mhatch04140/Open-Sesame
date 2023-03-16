@@ -3,13 +3,14 @@
  *
  *  This is a program to conrol multiple servo motors with bluetooth.
  *
- *  @author Phillip Vickers
+ *  @author Phillip Vickers and Mike Hatch
  *
  *  Last Edit: 3/5/2023
  *
  *
 */
 #include <Servo.h>
+
 
 Servo driverSideFront;  // create servo objects to control servos
 Servo driverSideRear;
@@ -26,6 +27,8 @@ int driverRearSensorPin = A2;
 int passengerFrontSensorPin=A1;
 int passengerRearSensorPin= A0;
 
+int driverFrontPosistion;
+
 int sensorPin;
 
 int sensorValue;
@@ -39,6 +42,8 @@ void setup() {
     driverSideRear.attach(DRIVER_REAR_SERVO_PIN);
     passengerSideFront.attach(PASSENGER_FRONT_SERVO_PIN);
     passengerSideRear.attach(PASSENGER_REAR_SERVO_PIN);
+
+    setupDoors();
 }
 
 void loop() {
@@ -94,36 +99,51 @@ void openDoor(Servo door){
     for (pos = 0; pos <= 180; pos += 1) {
         door.write(pos);
         sensorValue=analogRead(sensorPin);
-        Serial.println(sensorValue);
+        Serial.println(pos);
         
-        if(sensorValue>16){
-          int npos;
-          for (npos = pos; npos >= 0; npos -= 1) {
-            door.write(npos);
-            delay(5);
-          }
+        if(sensorValue>60){
+            int npos;
+            for (npos = pos; npos >= 0; npos -= 1) {
+              door.write(npos);
+              Serial.println(npos);
+              delay(5);
+            }
+         
           break;
         }
-        
+      
         delay(5);
     }
+   
 }
 
 void closeDoor(Servo door){
    for (pos = 180; pos >= 0; pos -= 1) {
           door.write(pos);
           sensorValue=analogRead(sensorPin);
-          Serial.println(sensorValue);
+          Serial.println(pos);
 
-          if(sensorValue>16){
+          if(sensorValue>60){
             int npos;
             for (npos = pos; npos <= 180; npos += 1) {
               door.write(npos);
+              Serial.println(npos);
               delay(5);
-            }
-            
+          }
+        
           break;
         }
+      
           delay(5);
+        
    }
+
+   }
+
+void setupDoors(){
+  driverSideFront.write(0);
+  driverSideRear.write(0);
+  passengerSideFront.write(0);
+  passengerSideRear.write(0);
+  
 }

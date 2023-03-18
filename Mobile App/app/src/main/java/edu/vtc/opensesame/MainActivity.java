@@ -173,12 +173,12 @@ public class MainActivity extends AppCompatActivity {
                     sendMessage();
                 }
                 else if (data.get(0).equalsIgnoreCase("Close driver front")){
-                    message="1";
+                    message="2";
                     sendMessage();
                 }
                 else if(data.get(0).equalsIgnoreCase("Open driver rear")){
-//                    message="3";
-//                    sendMessage();
+                    message="3";
+                    sendMessage();
                     driverRear.setChecked(true);
 
                 }
@@ -377,14 +377,14 @@ public class MainActivity extends AppCompatActivity {
         driverFront.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(driverRear.isChecked()){
+                if(driverFront.isChecked()){
                     message="1";
                     sendMessage();
                     SystemClock.sleep(1700);
 
                     status = ConnectedThread.getValueRead();
                     Log.d(TAG, "Status: "+ status);
-                    checkStatus(driverRear);
+                    checkStatus(driverFront);
 
                 }
                 else {
@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity {
                     status = ConnectedThread.getValueRead();
                     Log.d(TAG, "Status: "+ status);
 
-                    checkStatus(driverRear);
+                    checkStatus(driverFront);
 
                 }
 
@@ -438,7 +438,7 @@ public class MainActivity extends AppCompatActivity {
 
                     status = ConnectedThread.getValueRead();
                     Log.d(TAG, "Status: "+ status);
-                    checkStatus(driverRear);
+                    checkStatus(passengerFront);
 
                 }
                 else {
@@ -449,21 +449,21 @@ public class MainActivity extends AppCompatActivity {
                     status = ConnectedThread.getValueRead();
                     Log.d(TAG, "Status: "+ status);
 
-                    checkStatus(driverRear);
+                    checkStatus(passengerFront);
                 }
             }
         });
         passengerRear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(driverRear.isChecked()){
+                if(passengerRear.isChecked()){
                     message="7";
                     sendMessage();
                     SystemClock.sleep(1700);
 
                     status = ConnectedThread.getValueRead();
                     Log.d(TAG, "Status: "+ status);
-                    checkStatus(driverRear);
+                    checkStatus(passengerRear);
 
                 }
                 else {
@@ -474,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
                     status = ConnectedThread.getValueRead();
                     Log.d(TAG, "Status: "+ status);
 
-                    checkStatus(driverRear);
+                    checkStatus(passengerRear);
 
                 }
 

@@ -27,6 +27,8 @@ int driverRearSensorPin = A2;
 int passengerFrontSensorPin=A1;
 int passengerRearSensorPin= A0;
 
+bool vehicleMoving;
+
 int driverFrontPosistion;
 
 int sensorPin;
@@ -51,8 +53,8 @@ void loop() {
         char data= Serial.read(); // reading the data received from the bluetooth module
         switch(data) {
             case '1':
-                sensorPin = driverFrontSensorPin;
-                openDoor(driverSideFront);
+                // sensorPin = driverFrontSensorPin;
+                // openDoor(driverSideFront);
                 break;
 
             case '2':

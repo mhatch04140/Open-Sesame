@@ -1,5 +1,5 @@
 package edu.vtc.opensesame;
-/**
+/*
  * This class represents the activity where the bluetooth thread is connected.
  *
  * Credit: Used the tutorial from theFrugalEngineer to to develop class.
@@ -7,7 +7,7 @@ package edu.vtc.opensesame;
  *
  * @author Phillip Vickers
  *
- * Last Edit: 1/16/2023
+ * Last Edit: 3/20/2023
  */
 
 import android.annotation.SuppressLint;
@@ -22,7 +22,7 @@ import java.util.UUID;
 
     public class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
-        private static final String TAG = "FrugalLogs";
+        private static final String TAG = "Open Sesame:";
         public static Handler handler;
         private final static int ERROR_READ = 0;
 
@@ -56,7 +56,6 @@ import java.util.UUID;
                 } catch (IOException closeException) {
                     Log.e(TAG, "Could not close the client socket", closeException);
                 }
-                return;
             }
         }
 

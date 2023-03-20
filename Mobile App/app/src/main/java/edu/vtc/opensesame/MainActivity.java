@@ -5,9 +5,9 @@ package edu.vtc.opensesame;
   Credit: Used the tutorial from theFrugalEngineer to to develop bluetooth connectivity.
   https://github.com/The-Frugal-Engineer/ArduinoBTExampleLEDControl
 
-  @author Phillip Vickers
+  @author Mike Hatch and Phillip Vickers
  *
- * Last Edit: 3/5/2023
+ * Last Edit: 3/20/2023
  */
 
 import static android.content.ContentValues.TAG;
@@ -19,32 +19,27 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.os.SystemClock;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
-
 import edu.vtc.opensesame.R.id;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public static Handler handler;
 
     /* error read status */
-    private final static int ERROR_READ = 0;
+//    private final static int ERROR_READ = 0;
 
     /* Enables BT */
     private final int REQUEST_ENABLE_BT=1;
@@ -83,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
     SpeechRecognizer speechRecognizer;
 
     int count=0;
-    TextView doorStatus;
 
-
+    @SuppressLint({"CheckResult", "UseCompatLoadingForDrawables"})
+    @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,59 +108,50 @@ public class MainActivity extends AppCompatActivity {
 
         Intent speechRecognizerIntent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
-        mic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(count==0){
-                   mic.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_24));
+        mic.setOnClickListener(view -> {
+            if(count==0){
+               mic.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_24));
 
-                   //start
-                    speechRecognizer.startListening(speechRecognizerIntent);
-                    count=1;
-                }
-                else{
-                    mic.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_off_24));
-                    //turn off
-                    speechRecognizer.stopListening();
-                    count=0;
-                }
+               //start
+                speechRecognizer.startListening(speechRecognizerIntent);
+                count=1;
+            }
+            else{
+                mic.setImageDrawable(getDrawable(R.drawable.ic_baseline_mic_off_24));
+                //turn off
+                speechRecognizer.stopListening();
+                count=0;
             }
         });
 
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
-
             }
 
             @Override
             public void onBeginningOfSpeech() {
-
             }
 
             @Override
             public void onRmsChanged(float v) {
-
             }
 
             @Override
             public void onBufferReceived(byte[] bytes) {
-
             }
 
             @Override
             public void onEndOfSpeech() {
-
             }
 
             @Override
             public void onError(int i) {
-
             }
 
             @Override
             public void onResults(Bundle bundle) {
-                data = bundle.getStringArrayList(speechRecognizer.RESULTS_RECOGNITION);
+                data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 voiceCommand.setText(data.get(0));
 
                 if(data.get(0).equalsIgnoreCase("Open driver front")){
@@ -179,14 +165,12 @@ public class MainActivity extends AppCompatActivity {
                 else if(data.get(0).equalsIgnoreCase("Open driver rear")){
                     message="3";
                     sendMessage();
-                    driverRear.setChecked(true);
 
                 }
                 else if(data.get(0).equalsIgnoreCase("Close driver rear")){
-//                    message="4";
-//                    sendMessage();
+                    message="4";
+                    sendMessage();
 
-                    driverRear.setChecked(false);
                 }
                 else if(data.get(0).equalsIgnoreCase("Open passenger front")){
                     message="5";
@@ -207,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getApplicationContext() ,"Invalid Command",Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
@@ -219,22 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Using a handler to update the interface in case of an error connecting to the BT device
-        handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-
-                    case ERROR_READ:
-                        String arduinoMsg = msg.obj.toString(); // Read message from Arduino
-                        //btReadings.setText(arduinoMsg);
-                        break;
-                }
-            }
-        };
-
         // Create an Observable from RxAndroid
-        //The code will be executed when an Observer subscribes to the the Observable
         final Observable<String> connectToBTObservable = Observable.create(emitter -> {
             Log.d(TAG, "Calling connectThread class");
             //Call the constructor of the ConnectThread class
@@ -248,17 +216,12 @@ public class MainActivity extends AppCompatActivity {
                 //The pass the Open socket as arguments to call the constructor of ConnectedThread
                 ConnectedThread connectedThread = new ConnectedThread(connectThread.getMmSocket());
                 connectedThread.run();
-                if(connectedThread.getValueRead()!=null)
+                if(ConnectedThread.getValueRead()!=null)
                 {
-                    // If we have read a value from the Arduino
-                    // we call the onNext() function
-                    //This value will be observed by the observer
-                    emitter.onNext(connectedThread.getValueRead());
-
+                    emitter.onNext(ConnectedThread.getValueRead());
                 }
             }
             emitter.onComplete();
-
         });
 
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED){
@@ -266,85 +229,71 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Button to view all paired BT devices
-        searchDevices.setOnClickListener(new View.OnClickListener() {
-            //Display all the linked BT Devices
-            @Override
-            public void onClick(View view) {
+        //Display all the linked BT Devices
+        searchDevices.setOnClickListener(view -> {
+           //Check if the phone supports BT
+            if (bluetoothAdapter == null) {
+                Log.d(TAG, "Device doesn't support Bluetooth");
+            } else {
+                Log.d(TAG, "Device supports Bluetooth");
 
-
-                //Check if the phone supports BT
-                if (bluetoothAdapter == null) {
-                    Log.d(TAG, "Device doesn't support Bluetooth");
-                } else {
-                    Log.d(TAG, "Device supports Bluetooth");
-
-                    if (!bluetoothAdapter.isEnabled()) {
-                        Log.d(TAG, "Bluetooth is disabled");
-                        Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                            Log.d(TAG, "We don't BT Permissions");
-                            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                            Log.d(TAG, "Bluetooth is enabled now");
-                        } else {
-                            Log.d(TAG, "We have BT Permissions");
-                            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                            Log.d(TAG, "Bluetooth is enabled now");
-                        }
-
+                if (!bluetoothAdapter.isEnabled()) {
+                    Log.d(TAG, "Bluetooth is disabled");
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        Log.d(TAG, "We don't BT Permissions");
                     } else {
-                        Log.d(TAG, "Bluetooth is enabled");
+                        Log.d(TAG, "We have BT Permissions");
                     }
+                    //noinspection deprecation
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                    Log.d(TAG, "Bluetooth is enabled now");
 
+                } else {
+                    Log.d(TAG, "Bluetooth is enabled");
+                }
+                String btDevicesString="";
+                Set< BluetoothDevice > pairedDevices = bluetoothAdapter.getBondedDevices();
 
+                if (pairedDevices.size() > 0) {
+                    for (BluetoothDevice device: pairedDevices) {
+                        String deviceName = device.getName();
+                        String deviceHardwareAddress = device.getAddress();
+                        Log.d(TAG, "deviceName:" + deviceName);
+                        Log.d(TAG, "deviceHardwareAddress:" + deviceHardwareAddress);
 
-                    String btDevicesString="";
-                    Set< BluetoothDevice > pairedDevices = bluetoothAdapter.getBondedDevices();
+                        btDevicesString=btDevicesString+deviceName+" || "+deviceHardwareAddress+"\n";
 
-                    if (pairedDevices.size() > 0) {
-                        for (BluetoothDevice device: pairedDevices) {
-                            String deviceName = device.getName();
-                            String deviceHardwareAddress = device.getAddress();
-                            Log.d(TAG, "deviceName:" + deviceName);
-                            Log.d(TAG, "deviceHardwareAddress:" + deviceHardwareAddress);
-
-                            btDevicesString=btDevicesString+deviceName+" || "+deviceHardwareAddress+"\n";
-
-                            if (deviceName.equals("HC-06")) {
-                                Log.d(TAG, "HC-06 found");
-                                arduinoUUID = device.getUuids()[0].getUuid();
-                                arduinoBTModule = device;
-                                //HC -06 Found, enabling the button to read results
-                                connectToVehicle.setEnabled(true);
-                            }
-                            btDevices.setText(btDevicesString);
+                        if (deviceName.equals("HC-06")) {
+                            Log.d(TAG, "HC-06 found");
+                            arduinoUUID = device.getUuids()[0].getUuid();
+                            arduinoBTModule = device;
+                            //HC -06 Found, enabling the button to read results
+                            connectToVehicle.setEnabled(true);
                         }
+                        btDevices.setText(btDevicesString);
                     }
                 }
-                Log.d(TAG, "Button Pressed");
             }
+            Log.d(TAG, "Button Pressed");
         });
 
         //Connect to the HC-06 bt module
-        connectToVehicle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Trying to connect to vehicle",Toast.LENGTH_SHORT).show();
-                if (arduinoBTModule != null) {
-                    Toast.makeText(getApplicationContext(),"Connected to vehicle",Toast.LENGTH_LONG).show();
+        connectToVehicle.setOnClickListener(view -> {
+            Toast.makeText(getApplicationContext(),"Trying to connect to vehicle",Toast.LENGTH_SHORT).show();
+            if (arduinoBTModule != null) {
+                Toast.makeText(getApplicationContext(),"Connected to vehicle",Toast.LENGTH_LONG).show();
 
-                    setUpDoors();
-                    connectToBTObservable.
-                            observeOn(AndroidSchedulers.mainThread()).
-                            subscribeOn(Schedulers.io()).
-                            subscribe(valueRead -> {
-                            //can do something here if needed
-                                status = valueRead;
-
-
-                                Log.e(TAG, status);
-                                //
-                            });
-                }
+                setUpDoors();
+                connectToBTObservable.
+                        observeOn(AndroidSchedulers.mainThread()).
+                        subscribeOn(Schedulers.io()).
+                        subscribe(valueRead -> {
+                        //can do something here if needed
+                            status = valueRead;
+                            Log.e(TAG, status);
+                            //
+                        });
             }
         });
 
@@ -355,9 +304,9 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -373,128 +322,73 @@ public class MainActivity extends AppCompatActivity {
         passengerFront = findViewById(id.passengerFront);
         passengerRear = findViewById(id.passengerRear);
 
-
-        driverFront.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(driverFront.isChecked()){
-                    message="1";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-                    checkStatus(driverFront);
-
-                }
-                else {
-                    message="2";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-
-                    checkStatus(driverFront);
-
-                }
-
+        driverFront.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(driverFront.isChecked()){
+                message="1";
             }
+            else {
+                message="2";
+            }
+            sendMessage();
+            SystemClock.sleep(1700);
+            status = ConnectedThread.getValueRead();
+            Log.d(TAG, "Status: "+ status);
+            checkStatus(driverFront);
         });
 
-        driverRear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(driverRear.isChecked()){
-                    message="3";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-                    checkStatus(driverRear);
-
-                }
-                else {
-                    message="4";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-
-                   checkStatus(driverRear);
-
-                }
+        driverRear.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(driverRear.isChecked()){
+                message="3";
             }
-        });
-        passengerFront.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(driverRear.isChecked()){
-                    message="5";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-                    checkStatus(passengerFront);
-
-                }
-                else {
-                    message="6";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-
-                    checkStatus(passengerFront);
-                }
+            else {
+                message="4";
             }
+            sendMessage();
+            SystemClock.sleep(1700);
+            status = ConnectedThread.getValueRead();
+            Log.d(TAG, "Status: "+ status);
+            checkStatus(driverRear);
         });
-        passengerRear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(passengerRear.isChecked()){
-                    message="7";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-                    checkStatus(passengerRear);
-
-                }
-                else {
-                    message="8";
-                    sendMessage();
-                    SystemClock.sleep(1700);
-
-                    status = ConnectedThread.getValueRead();
-                    Log.d(TAG, "Status: "+ status);
-
-                    checkStatus(passengerRear);
-
-                }
-
+        passengerFront.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(passengerFront.isChecked()){
+                message="5";
             }
+            else {
+                message="6";
+            }
+            sendMessage();
+            SystemClock.sleep(1700);
+            status = ConnectedThread.getValueRead();
+            Log.d(TAG, "Status: "+ status);
+            checkStatus(passengerFront);
         });
-
-
-
-
+        passengerRear.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(passengerRear.isChecked()){
+                message="7";
+            }
+            else {
+                message="8";
+            }
+            sendMessage();
+            SystemClock.sleep(1700);
+            status = ConnectedThread.getValueRead();
+            Log.d(TAG, "Status: "+ status);
+            checkStatus(passengerRear);
+        });
     }
 
-    /**
+    /*
      * Sends a message the the arduino board
      */
     public void sendMessage() {
         ConnectedThread.write(message);
-
         Log.d(TAG, "Sending Message");
     }
 
+    /*
+     * Checks the status of a door
+     * @param door The activated door
+     */
     public void checkStatus(ToggleButton door){
         int statusCode=1;
       if(status.equals("0\r")) statusCode = 0;

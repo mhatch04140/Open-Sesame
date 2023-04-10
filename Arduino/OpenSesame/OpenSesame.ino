@@ -22,16 +22,10 @@ const int DRIVER_REAR_SERVO_PIN=7;
 const int PASSENGER_FRONT_SERVO_PIN=8;
 const int PASSENGER_REAR_SERVO_PIN=9;
 
-int driverFrontSensorPin = A3;
-int driverRearSensorPin = A2;
-int passengerFrontSensorPin=A1;
-int passengerRearSensorPin= A0;
 
 bool vehicleMoving;
 
 int driverFrontPosistion;
-
-int sensorPin;
 
 int sensorValue;
 
@@ -53,42 +47,38 @@ void loop() {
         char data= Serial.read(); // reading the data received from the bluetooth module
         switch(data) {
             case '1':
-                sensorPin = driverFrontSensorPin;
                 openDoor(driverSideFront);
                 break;
 
             case '2':
-                sensorPin = driverFrontSensorPin;
                 closeDoor(driverSideFront);
                 break;
 
             case '3':
-                sensorPin = driverRearSensorPin;
+                
                 openDoor(driverSideRear);
                 break;
 
             case '4':
-                sensorPin = driverRearSensorPin;
+                
                 closeDoor(driverSideRear);
                 break;
 
             case '5':
-                sensorPin = passengerFrontSensorPin;
+                
                 openDoor(passengerSideFront);
                 break;
 
             case '6':
-                sensorPin = passengerFrontSensorPin;
+               
                 closeDoor(passengerSideFront);
                 break;
 
             case '7':
-                sensorPin = passengerRearSensorPin;
                 openDoor(passengerSideRear);
                 break;
 
             case '8':
-                sensorPin = passengerRearSensorPin;
                 closeDoor(passengerSideRear);
                 break;
 
@@ -100,10 +90,10 @@ void loop() {
 void openDoor(Servo door){
     for (pos = 0; pos <= 180; pos += 1) {
         door.write(pos);
-        sensorValue=analogRead(sensorPin);
+        sensorValue=analogRead(A0);
         Serial.println(pos);
         
-        if(sensorValue>60){
+        if(sensorValue>12){
             int npos;
             for (npos = pos; npos >= 0; npos -= 1) {
               door.write(npos);
@@ -122,10 +112,10 @@ void openDoor(Servo door){
 void closeDoor(Servo door){
    for (pos = 180; pos >= 0; pos -= 1) {
           door.write(pos);
-          sensorValue=analogRead(sensorPin);
+          sensorValue=analogRead(A0);
           Serial.println(pos);
 
-          if(sensorValue>60){
+          if(sensorValue>12){
             int npos;
             for (npos = pos; npos <= 180; npos += 1) {
               door.write(npos);

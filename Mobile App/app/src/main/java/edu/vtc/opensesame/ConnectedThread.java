@@ -1,17 +1,12 @@
 package edu.vtc.opensesame;
-/**
- * /**
- *  * This class represents the a connected bluetooth thread.
- *  *
- *  * Credit: Used the tutorial from theFrugalEngineer to to develop class.
- *  * https://github.com/The-Frugal-Engineer/ArduinoBTExampleLEDControl
- *  *
- *  * @author Phillip Vickers
- *  *
- *  * Last Edit: 1/30/2023
- *  */
-
-
+  /* This class represents the a connected bluetooth thread.
+  *
+  * Credit: Used the tutorial from theFrugalEngineer to to develop class.
+  * https://github.com/The-Frugal-Engineer/ArduinoBTExampleLEDControl
+  *
+  * @author Phillip Vickers
+  * Last Edit: 3/20/2023
+  */
 import android.bluetooth.BluetoothSocket;
 import android.util.Log;
 
@@ -26,14 +21,6 @@ import java.io.OutputStream;
         private final InputStream mmInStream;
         private static OutputStream mmOutStream;
         private static String valueRead;
-        private static int Status = 0;
-        public InputStream getMmInStream() {
-            return mmInStream;
-        }
-
-        public OutputStream getMmOutStream() {
-            return mmOutStream;
-        }
 
         public ConnectedThread(BluetoothSocket socket) {
             mmSocket = socket;
@@ -62,20 +49,16 @@ import java.io.OutputStream;
 
             byte[] buffer = new byte[1024];
             int bytes = 0; // bytes returned from read()
-            int numberOfReadings = 0; //to control the number of readings from the Arduino
 
-            // Keep listening to the InputStream until an exception occurs.
-            //We just want to get 1 temperature readings from the Arduino
              while (true){
                 try {
 
                     buffer[bytes] = (byte) mmInStream.read();
                     String readMessage;
-                    // If I detect a "\n" means I already read a full measurement
+
                     if (buffer[bytes] == '\n') {
                         readMessage = new String(buffer, 0, bytes);
                         Log.e(TAG, readMessage);
-                        //Value to be read by the Observer streamed by the Obervable
                         valueRead=readMessage;
                         bytes = 0;
 
@@ -85,7 +68,6 @@ import java.io.OutputStream;
                 } catch (IOException e) {
                     Log.d(TAG, "Input stream was disconnected", e);
                 }
-
             }
         }
         //Write to the BT Stream
@@ -93,15 +75,13 @@ import java.io.OutputStream;
             byte[] bytes = input.getBytes(); //converts entered String into bytes
             try {
                 Log.d(TAG, "Trying mmOut");
-
-
                 mmOutStream.write(bytes);
             } catch (IOException e) {
                 Log.e("Send Error","Unable to send message",e);
             }
         }
 
-        // Call this method from the main activity to shut down the connection.
+        /* Call this method from the main activity to shut down the connection. */
         public void cancel() {
             try {
                 mmSocket.close();

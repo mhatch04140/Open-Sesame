@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     message="1";
                     sendMessage();
                 }
-                else if (data.get(0).equalsIgnoreCase("Close driver front")){
+                else if (data.get(0).equalsIgnoreCase("shut driver front")){
                     message="2";
                     sendMessage();
                 }
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                     sendMessage();
 
                 }
-                else if(data.get(0).equalsIgnoreCase("Close driver rear")){
+                else if(data.get(0).equalsIgnoreCase("shut driver rear")){
                     message="4";
                     sendMessage();
 
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     message="5";
                     sendMessage();
                 }
-                else if (data.get(0).equalsIgnoreCase("Close passenger front")){
+                else if (data.get(0).equalsIgnoreCase("shut passenger front")){
                     message="6";
                     sendMessage();
                 }
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     message="7";
                     sendMessage();
                 }
-                else if(data.get(0).equalsIgnoreCase("Close passenger rear")){
+                else if(data.get(0).equalsIgnoreCase("shut passenger rear")){
                     message="8";
                     sendMessage();
                 }
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
             SystemClock.sleep(1700);
             status = ConnectedThread.getValueRead();
             Log.d(TAG, "Status: "+ status);
-            checkStatus(driverRear);
+         //   checkStatus(driverRear);
         });
         passengerFront.setOnCheckedChangeListener((compoundButton, b) -> {
             if(passengerFront.isChecked()){
@@ -391,11 +391,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void checkStatus(ToggleButton door){
         int statusCode=1;
-      if(status.equals("0\r")) statusCode = 0;
-      if(status.equals("180\r")) statusCode = 180;
+        if(status.equals("0\r")) statusCode = 0;
+        if(status.equals("90\r")) statusCode = 90;
 
         if(statusCode==0) door.setChecked(false);
-        else if(statusCode==180){
+        else if(statusCode==90){
             door.setChecked(true);
         }
     }

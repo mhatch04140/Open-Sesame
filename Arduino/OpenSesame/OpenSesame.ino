@@ -88,47 +88,80 @@ void loop() {
 }//end loop
 
 void openDoor(Servo door){
-    for (pos = 0; pos <= 180; pos += 1) {
-        door.write(pos);
-        sensorValue=analogRead(A0);
-        Serial.println(pos);
+ // move the servo to 90 degrees
+  door.write(90);
+
+  // wait for the servo to reach the desired position
+  delay(250);
+  sensorValue=analogRead(A0);
+
+
+  if(sensorValue!=0){
+    closeDoor(door);
+    return;
+  }
+
+  Serial.println(door.read());
+//    for (pos = 0; pos <= 180; pos += 1) {
+//        door.write(pos);
+//        sensorValue=analogRead(A0);
+//        Serial.println(door.read());
         
-        if(sensorValue>12){
-            int npos;
-            for (npos = pos; npos >= 0; npos -= 1) {
-              door.write(npos);
-              Serial.println(npos);
-              delay(5);
-            }
-         
-          break;
-        }
-      
-        delay(5);
-    }
+//        if(sensorValue>12){
+//            int npos;
+//            for (npos = pos; npos >= 0; npos -= 1) {
+//              door.write(npos);
+//              Serial.println(npos);
+//              delay(5);
+//            }
+//         
+//          break;
+//        }
+//      
+//        delay(5);
+//    }
    
 }
 
 void closeDoor(Servo door){
-   for (pos = 180; pos >= 0; pos -= 1) {
-          door.write(pos);
-          sensorValue=analogRead(A0);
-          Serial.println(pos);
+ // move the servo to 0 degrees
+  door.write(0);
 
-          if(sensorValue>12){
-            int npos;
-            for (npos = pos; npos <= 180; npos += 1) {
-              door.write(npos);
-              Serial.println(npos);
-              delay(5);
-          }
-        
-          break;
-        }
-      
-          delay(5);
-        
-   }
+  // wait for the servo to reach the desired position
+  delay(250);
+
+  // read the current position of the servo
+  sensorValue=analogRead(A0);
+ 
+
+  if(sensorValue!=0){
+    openDoor(door);
+   return;
+  }
+
+  Serial.println(door.read());
+
+
+     
+//   for (pos = 180; pos >= 0; pos -= 1) {
+//          door.write(pos);
+//          sensorValue=analogRead(A0);
+//          Serial.println(door.read());
+//
+////          if(sensorValue>12){
+////            int npos;
+////            for (npos = pos; npos <= 180; npos += 1) {
+////              door.write(npos);
+////              Serial.println(npos);
+////              delay(5);
+////          }
+////        
+////          break;
+////        }
+//      
+//          delay(5);
+//        
+//   }
 
    }
 

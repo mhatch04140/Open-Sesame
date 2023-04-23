@@ -23,13 +23,7 @@ const int PASSENGER_FRONT_SERVO_PIN=8;
 const int PASSENGER_REAR_SERVO_PIN=9;
 
 
-bool vehicleMoving;
-
-int driverFrontPosistion;
-
 int sensorValue;
-
-int pos = 0;
 
 void setup() {
     Serial.begin(9600);
@@ -126,7 +120,6 @@ void closeDoorNoCheck(Servo door){
   door.write(180);
   delay(350);
   sensorValue=analogRead(A0);
- 
   Serial.println(door.read());
 }
 

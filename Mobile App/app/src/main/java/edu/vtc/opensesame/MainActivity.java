@@ -7,7 +7,7 @@ package edu.vtc.opensesame;
 
   @author Mike Hatch and Phillip Vickers
  *
- * Last Edit: 3/20/2023
+ * Last Edit: 4/20/2023
  */
 
 import static android.content.ContentValues.TAG;
@@ -157,36 +157,67 @@ public class MainActivity extends AppCompatActivity {
                 if(data.get(0).equalsIgnoreCase("Open driver front")){
                     message="1";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverFront);
                 }
                 else if (data.get(0).equalsIgnoreCase("shut driver front")){
                     message="2";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverFront);
                 }
                 else if(data.get(0).equalsIgnoreCase("Open driver rear")){
                     message="3";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverRear);
 
                 }
                 else if(data.get(0).equalsIgnoreCase("shut driver rear")){
                     message="4";
                     sendMessage();
-
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(driverRear);
                 }
                 else if(data.get(0).equalsIgnoreCase("Open passenger front")){
                     message="5";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(passengerFront);
                 }
                 else if (data.get(0).equalsIgnoreCase("shut passenger front")){
                     message="6";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(passengerFront);
                 }
                 else if(data.get(0).equalsIgnoreCase("Open passenger rear")){
                     message="7";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(passengerRear);
                 }
                 else if(data.get(0).equalsIgnoreCase("shut passenger rear")){
                     message="8";
                     sendMessage();
+                    SystemClock.sleep(1700);
+                    status = ConnectedThread.getValueRead();
+                    Log.d(TAG, "Status: "+ status);
+                    checkStatus(passengerRear);
                 }
                 else{
                     Toast.makeText(getApplicationContext() ,"Invalid Command",Toast.LENGTH_SHORT).show();
@@ -318,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
         /* Toggle Buttons for opening doors */
 
         driverFront = findViewById(id.driverFront);
-        driverRear = findViewById(id.driverRearToggle);
+        driverRear = findViewById(id.driverRear);
         passengerFront = findViewById(id.passengerFront);
         passengerRear = findViewById(id.passengerRear);
 
@@ -347,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
             SystemClock.sleep(1700);
             status = ConnectedThread.getValueRead();
             Log.d(TAG, "Status: "+ status);
-         //   checkStatus(driverRear);
+            checkStatus(driverRear);
         });
         passengerFront.setOnCheckedChangeListener((compoundButton, b) -> {
             if(passengerFront.isChecked()){
@@ -391,11 +422,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void checkStatus(ToggleButton door){
         int statusCode=1;
-        if(status.equals("0\r")) statusCode = 0;
-        if(status.equals("90\r")) statusCode = 90;
+        if(status.equals("0\r")){
+            statusCode = 0;
+        }
+        if(status.equals("180\r")) statusCode = 180;
 
-        if(statusCode==0) door.setChecked(false);
-        else if(statusCode==90){
+        if(statusCode==180) door.setChecked(false);
+        else if(statusCode==0){
             door.setChecked(true);
         }
     }

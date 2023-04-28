@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(int i) {
+
             }
 
             @Override
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                     checkStatus(passengerRear);
                 }
                 else{
-                    Toast.makeText(getApplicationContext() ,"Invalid Command",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext() ,"Invalid Command",Toast.LENGTH_LONG).show();
                 }
             }
 
